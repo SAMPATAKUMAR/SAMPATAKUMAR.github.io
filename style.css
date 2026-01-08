@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.hero {
+  text-align: center;
+}
+
+.profile {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.4);
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.about {
+  max-width: 700px;
+  margin: auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.skills span {
+  display: inline-block;
+  margin: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.2);
+  font-size: 0.85rem;
+}
+
+.links a {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 12px;
+  text-decoration: none;
+  color: #00eaff;
+  font-weight: 500;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+footer {
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
