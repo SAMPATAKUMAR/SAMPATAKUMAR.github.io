@@ -60,7 +60,84 @@ section {
 }
 
 .glass {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.1);* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0e0e0e;
+  color: #eaeaea;
+  line-height: 1.6;
+}
+
+.hero {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8vw;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+}
+
+.tagline {
+  margin-top: 10px;
+  color: #a0a0a0;
+}
+
+.content {
+  padding: 0 8vw 80px;
+  max-width: 900px;
+}
+
+section {
+  margin-top: 80px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+p, li {
+  color: #cfcfcf;
+  font-size: 1rem;
+}
+
+.inline {
+  color: #cfcfcf;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid #444;
+}
+
+a:hover {
+  border-bottom-color: #fff;
+}
+
+.muted {
+  color: #888;
+}
+
   border-radius: 15px;
   border: 1px solid rgba(255,255,255,0.18);
   backdrop-filter: blur(10px);

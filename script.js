@@ -1,29 +1,21 @@
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href"))
-            .scrollIntoView({ behavior: "smooth" });
-  });
-});
-
-// Add active class on scroll
+// subtle scroll fade
 const sections = document.querySelectorAll("section");
-const navLi = document.querySelectorAll(".nav-links a");
 
-window.onscroll = () => {
-  let current = "";
-  sections.forEach(sec => {
-    const top = sec.offsetTop - 150;
-    if (pageYOffset >= top) {
-      current = sec.getAttribute("id");
-    }
-  });
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
 
-  navLi.forEach(a => {
-    a.classList.remove("active");
-    if (a.getAttribute("href").includes(current)) {
-      a.classList.add("active");
-    }
-  });
-};
+sections.forEach(sec => {
+  sec.style.opacity = 0;
+  sec.style.transform = "translateY(20px)";
+  sec.style.transition = "0.6s ease";
+  observer.observe(sec);
+});
