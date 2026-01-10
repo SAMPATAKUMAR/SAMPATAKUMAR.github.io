@@ -159,5 +159,64 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
+
+
+
+<script>
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* ===== Scroll Reveal ===== */
+  const revealElements = document.querySelectorAll(
+    ".section, .card"
+  );
+
+  const revealObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = "translateY(0)";
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealElements.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(24px)";
+    el.style.transition = "0.7s cubic-bezier(.2,.8,.2,1)";
+    revealObserver.observe(el);
+  });
+
+  /* ===== Hero Image 3D Tilt ===== */
+  const heroMedia = document.querySelector(".hero-media img");
+
+  if (heroMedia) {
+    heroMedia.addEventListener("mousemove", e => {
+      const rect = heroMedia.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = ((x / rect.width) - 0.5) * 14;
+      const rotateX = ((y / rect.height) - 0.5) * -14;
+
+      heroMedia.style.transform =
+        `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    heroMedia.addEventListener("mouseleave", () => {
+      heroMedia.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    });
+  }
+
+  /* ===== Ambient Mouse Glow ===== */
+  window.addEventListener("mousemove", e => {
+    document.body.style.setProperty("--x", `${e.clientX}px`);
+    document.body.style.setProperty("--y", `${e.clientY}px`);
+  });
+</script>
+
 </body>
 </html>
