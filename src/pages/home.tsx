@@ -541,7 +541,7 @@ export default function Home() {
 
       <section
         id="contact"
-        className="px-6 lg:px-20 py-24 pb-48 lg:pb-64"
+        className="px-6 lg:px-20 py-24 pb-48 lg:pb-64 w-1/2 "
       >
 
         <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
@@ -613,7 +613,7 @@ export default function Home() {
         </div>
 
          <div
-      className="badge-base LI-profile-badge"
+      className="badge-base LI-profile-badge "
       data-locale="en_US"
       data-size="medium"
       data-theme="dark"
