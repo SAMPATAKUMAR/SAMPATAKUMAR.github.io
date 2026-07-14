@@ -539,101 +539,182 @@ export default function Home() {
 
       {/* ================= CONTACT ================= */}
 
-      <section
-        id="contact"
-        className="px-6 lg:px-20 py-24 pb-48 lg:pb-64 w-1/2 "
-      >
+<section
+  id="contact"
+  className="px-6 lg:px-20 py-24 pb-48 lg:pb-64"
+>
+  <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
+    Contact Me
+  </ScrollReveal>
 
-        <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
-          Contact Me
-        </ScrollReveal>
+  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-start">
+
+    {/* ===========================
+          CONTACT FORM
+    =========================== */}
+    <div className="rounded-3xl bg-gray-900/40 backdrop-blur-lg border border-gray-700 p-6 hover:border-purple-500 lg:p-10 hover:scale-[1.02] transition-all duration-300">
+
+      <form
+        className="flex flex-col gap-6 "
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert("Message sent!");
+        }}
+      >
+        {/* Name */}
+        <div className="flex flex-col gap-2 ">
+          <label className="text-gray-300 font-medium text-sm hover:scale-[1.02]
+            hover:shadow-[0_0_30px_rgba(168,85,247,0.45)]
+            transition-all
+            duration-300">
+            Name
+          </label>
+
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
+          />
+        </div>
+
+        {/* Email */}
+        <div className="flex flex-col gap-2">
+          <label className="text-gray-300 font-medium text-sm">
+            Email
+          </label>
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
+          />
+        </div>
+
+        {/* Message */}
+        <div className="flex flex-col gap-2 pb-26">
+          <label className="text-gray-300 font-medium text-sm">
+            Message
+          </label>
+
+          <textarea
+            rows={6}
+            placeholder="Write your message..."
+            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none resize-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="mt-2 py-4 rounded-xl border border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.45)] transition-all duration-300 font-semibold text-white"
+        >
+          Send Message
+        </button>
+      </form>
+
+    </div>
+
+    {/* ===========================
+            RIGHT COLUMN
+    =========================== */}
+
+    <div className="flex flex-col gap-6">
+
+      {/* ================= LinkedIn ================= */}
+
+      <div className="rounded-3xl  backdrop-blur-lg border border border-gray-700 p-6 hover:border-purple-500 p-4 flex justify-center ">
 
         <div
-          className="
-    w-full
-    max-w-3xl
-    mx-auto
-    rounded-3xl
-    bg-gray-900/40
-    backdrop-blur-lg
-    border border-gray-700
-    p-6 lg:p-10
-    "
+          className="badge-base LI-profile-badge"
+          data-locale="en_US"
+          data-size="large"
+          data-theme="dark"
+          data-type="VERTICAL"
+          data-vanity="sampatakumar-sv"
+          data-version="v1"
         >
+          <a
+            className="badge-base__link LI-simple-link"
+            href="https://in.linkedin.com/in/sampatakumar-sv"
+            target="_blank"
+            rel="noopener noreferrer"
+          ></a>
+        </div>
 
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={(e) => {
-              e.preventDefault()
+      </div>
 
-              alert("Message sent!")
-            }}
-          >
+      {/* ================= GitHub ================= */}
 
-            {/* Name */}
-            <div className="flex flex-col gap-2">
-              <label className="text-gray-300 font-medium text-sm ml-1">Name</label>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:bg-gray-800 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400 shadow-inner"
-              />
-            </div>
+      <a
+        href="https://github.com/sampatakumar"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group rounded-3xl backdrop-blur-lg border border-gray-700 p-6 hover:border-purple-500 transition-all duration-300"
+      >
 
-            {/* Email */}
-            <div className="flex flex-col gap-2">
-              <label className="text-gray-300 font-medium text-sm ml-1">Email</label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:bg-gray-800 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400 shadow-inner"
-              />
-            </div>
+        <div className="flex gap-5">
 
-            {/* Message */}
-            <div className="flex flex-col gap-2">
-              <label className="text-gray-300 font-medium text-sm ml-1">Message</label>
-              <textarea
-                rows={5}
-                placeholder="Write your message..."
-                className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none resize-none focus:border-purple-400 focus:bg-gray-800 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400 shadow-inner"
-              />
-            </div>
+          <img
+            src="https://avatars.githubusercontent.com/u/148532254?v=4"
+            alt="GitHub"
+            className="w-20 h-20 rounded-full object-cover border-2 border-purple-500"
+          />
 
-            {/* Submit */}
-            <button
-              type="submit"
-              className="mt-2 px-6 py-4 rounded-xl bg-purple-600 hover:bg-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 font-semibold tracking-wide text-white"
-            >
-              Send Message
-            </button>
+          <div>
 
-          </form>
+            <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
+              GitHub
+            </h3>
+
+            <p className="text-purple-400">
+              @sampatakumar
+            </p>
+
+            <p className="text-gray-400 text-sm leading-7 mt-3">
+              Explore my collection of full-stack web applications,
+              AI-powered solutions, Unreal Engine experiments,
+              and open-source projects.
+              Each repository showcases my passion for building
+              modern, scalable, and impactful software.
+            </p>
+
+          </div>
 
         </div>
 
-         <div
-      className="badge-base LI-profile-badge "
-      data-locale="en_US"
-      data-size="medium"
-      data-theme="dark"
-      data-type="VERTICAL"
-      data-vanity="sampatakumar-sv"
-      data-version="v1"
-    >
-      <a
-        className="badge-base__link LI-simple-link"
-        href="https://in.linkedin.com/in/sampatakumar-sv?trk=profile-badge"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Sampatakumar S V
       </a>
-    </div>
-       
-              
 
-      </section>
+      {/* ================= Resume ================= */}
+
+      <a
+        href="/Sampatakumar_Resume.pdf"
+        download
+        className="w-full"
+      >
+        <button
+          className="
+            w-full
+            py-4
+            rounded-2xl
+            border border-purple-500
+            text-white
+            text-lg
+            font-semibold
+            hover:scale-[1.02]
+            hover:shadow-[0_0_30px_rgba(168,85,247,0.45)]
+            transition-all
+            duration-300
+          "
+        >
+          📄 Download Resume
+        </button>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* ================= FOOTER ================= */}
       <footer className="border-t border-gray-800 bg-gray-900/20 py-12 px-6 mt-12">
