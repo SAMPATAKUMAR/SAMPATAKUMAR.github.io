@@ -509,9 +509,13 @@ export default function Home() {
 
           {/* Project Card 3 */}
           <div className="rounded-3xl overflow-hidden bg-gray-900/40 border border-gray-700 backdrop-blur-lg hover:scale-105 transition-all duration-500 group">
-            <div className="w-full h-52 bg-gradient-to-br from-purple-900/40 to-pink-900/40 relative overflow-hidden flex items-center justify-center">
-              <span className="text-gray-400 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">IPC CHATBOT</span>
-            </div>
+           <div className="w-full h-52 relative overflow-hidden rounded-t-3xl">
+  <img
+    src="DIRECT_IMAGE_URL"
+    alt="ResumeAI"
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+  />
+</div>
             
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-3 text-white">ResumeAI</h2>
