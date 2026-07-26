@@ -637,6 +637,7 @@ export default function Home() {
             href="https://in.linkedin.com/in/sampatakumar-sv"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Sampatakumar’s LinkedIn Profile"
           ></a>
         </div>
 
@@ -726,10 +727,10 @@ export default function Home() {
           </div>
           
           <div className="flex items-center justify-center gap-6 text-gray-500">
-            <a href="https://github.com/sampatakumar" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+            <a href="https://github.com/sampatakumar" aria-label="Sampatakumar’s GitHub Profile" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
               <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/in/sampatakumar-sv" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+            <a href="https://www.linkedin.com/in/sampatakumar-sv" aria-label="Sampatakumar’s LinkedIn Profile" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
               <FaLinkedin />
             </a>
 
