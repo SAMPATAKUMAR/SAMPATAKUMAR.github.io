@@ -528,9 +528,24 @@ export default function Home() {
               </div>
               
               <div className="flex gap-4 mt-6">
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium" href="https://resumeaidev.vercel.app">Live Demo</button>
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium" href="https://github.com/sampatakumar/ResumeAI">GitHub</button>
-              </div>
+  <a
+    href="https://resumeaidev.vercel.app"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
+  >
+    Live Demo
+  </a>
+
+  <a
+    href="https://github.com/sampatakumar/ResumeAI"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
+  >
+    GitHub
+  </a>
+</div>
             </div>
           </div>
         </div>
