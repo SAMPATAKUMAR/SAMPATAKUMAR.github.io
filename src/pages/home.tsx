@@ -726,10 +726,10 @@ export default function Home() {
           </div>
           
           <div className="flex items-center justify-center gap-6 text-gray-500">
-            <a href="#" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+            <a href="https://github.com/sampatakumar" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
               <FaGithub />
             </a>
-            <a href="#" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+            <a href="https://www.linkedin.com/in/sampatakumar-sv" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
               <FaLinkedin />
             </a>
 
