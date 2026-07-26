@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Sitemap reference for better indexing
+Sitemap: https://sampatakumar.github.io/sitemap.xml
