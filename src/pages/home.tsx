@@ -514,20 +514,22 @@ export default function Home() {
             </div>
             
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-3 text-white">IPC Chatbot</h2>
+              <h2 className="text-2xl font-bold mb-3 text-white">ResumeAI</h2>
               <p className="text-gray-100 text-sm leading-7">
-                Intelligent NLP chatbot designed to answer complex legal questions regarding the Indian Penal Code.
+                AI-powered career platform that builds ATS-friendly resumes, tailors them to job descriptions, and generates professional portfolio websites.
               </p>
               
               <div className="flex gap-2 mt-4 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 text-xs font-medium">Python</span>
-                <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-medium">NLP</span>
-                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">React</span>
+                <span className="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 text-xs font-medium">React</span>
+                <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-medium">Express.js</span>
+                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Supabase</span>
+                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Groq AI</span>
+                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Firebase</span>
               </div>
               
               <div className="flex gap-4 mt-6">
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">Live Demo</button>
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">GitHub</button>
+                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium" href="https://resumeaidev.vercel.app">Live Demo</button>
+                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium" href="https://github.com/sampatakumar/ResumeAI">GitHub</button>
               </div>
             </div>
           </div>
