@@ -88,7 +88,7 @@ export default function Home() {
 
 
 
-            <div className="text-gray-300 text-base sm:text-lg lg:text-xl leading-8">
+            <div className="text-gray-100 text-base sm:text-lg lg:text-xl leading-8">
 
 
 
@@ -226,7 +226,7 @@ export default function Home() {
     About Me
   </ScrollReveal>
 
-  <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 text-center text-lg md:text-xl font-normal text-gray-300 leading-relaxed lg:leading-loose">
+  <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 text-center text-lg md:text-xl font-normal text-gray-100 leading-relaxed lg:leading-loose">
     <BlurText
       text="I am Sampatakumar, a Computer Science Engineering student passionate about Software Development, Web Technologies, and Artificial Intelligence. I enjoy building modern, scalable, and user-friendly applications that solve real-world problems."
       delay={200}
@@ -273,7 +273,7 @@ export default function Home() {
           {["HTML5", "CSS3", "JavaScript", "React.js", "React Router", "Responsive Design", "UI/UX"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -291,7 +291,7 @@ export default function Home() {
           {["Node.js", "Express.js", "REST APIs", "Authentication"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -309,7 +309,7 @@ export default function Home() {
           {["MongoDB", "Firebase", "Firestore", "SQL"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -327,7 +327,7 @@ export default function Home() {
           {["Git", "GitHub", "Firebase Auth", "Vite", "Postman"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -345,7 +345,7 @@ export default function Home() {
           {["JavaScript", "Python", "Java"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -363,7 +363,7 @@ export default function Home() {
           {["DSA", "OOP", "Problem Solving", "Software Design"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -381,7 +381,7 @@ export default function Home() {
           {["AI", "Machine Learning", "Cloud", "Next.js"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -399,7 +399,7 @@ export default function Home() {
           {["Communication", "Teamwork", "Leadership", "Quick Learning"].map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300"
+              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
             >
               {skill}
             </span>
@@ -452,7 +452,7 @@ export default function Home() {
           >
 
             <div className="w-full h-52 bg-gradient-to-br from-indigo-900/40 to-purple-900/40 relative overflow-hidden flex items-center justify-center">
-              <span className="text-gray-400 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">SMART SKILL HUBX</span>
+              <span className="text-gray-100 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">SMART SKILL HUBX</span>
             </div>
 
             <div className="p-6">
@@ -461,7 +461,7 @@ export default function Home() {
                 Smart Skill HubX
               </h2>
 
-              <p className="text-gray-300 text-sm leading-7">
+              <p className="text-gray-100 text-sm leading-7">
                 AI-powered learning platform that recommends
                 personalized learning paths and skill development.
               </p>
@@ -485,12 +485,12 @@ export default function Home() {
           {/* Project Card 2 */}
           <div className="rounded-3xl overflow-hidden bg-gray-900/40 border border-gray-700 backdrop-blur-lg hover:scale-105 transition-all duration-500 group">
             <div className="w-full h-52 bg-gradient-to-br from-blue-900/40 to-cyan-900/40 relative overflow-hidden flex items-center justify-center">
-              <span className="text-gray-400 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">AGRICULTURE E-COMMERCE</span>
+              <span className="text-gray-100 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">AGRICULTURE E-COMMERCE</span>
             </div>
             
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-3 text-white">Agriculture E-Commerce</h2>
-              <p className="text-gray-300 text-sm leading-7">
+              <p className="text-gray-100 text-sm leading-7">
                 Online platform for farmers and customers to directly buy and sell agricultural products with real-time tracking.
               </p>
               
@@ -515,7 +515,7 @@ export default function Home() {
             
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-3 text-white">IPC Chatbot</h2>
-              <p className="text-gray-300 text-sm leading-7">
+              <p className="text-gray-100 text-sm leading-7">
                 Intelligent NLP chatbot designed to answer complex legal questions regarding the Indian Penal Code.
               </p>
               
@@ -563,7 +563,7 @@ export default function Home() {
       >
         {/* Name */}
         <div className="flex flex-col gap-2 ">
-          <label className="text-gray-300 font-medium text-sm hover:scale-[1.02]
+          <label className="text-gray-100 font-medium text-sm hover:scale-[1.02]
             hover:shadow-[0_0_30px_rgba(168,85,247,0.45)]
             transition-all
             duration-300">
@@ -579,7 +579,7 @@ export default function Home() {
 
         {/* Email */}
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-medium text-sm">
+          <label className="text-gray-100 font-medium text-sm">
             Email
           </label>
 
@@ -592,7 +592,7 @@ export default function Home() {
 
         {/* Message */}
         <div className="flex flex-col gap-2 pb-26">
-          <label className="text-gray-300 font-medium text-sm">
+          <label className="text-gray-100 font-medium text-sm">
             Message
           </label>
 
