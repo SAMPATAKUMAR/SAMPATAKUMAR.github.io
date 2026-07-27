@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './GooeyNav.css';
 
 interface GooeyNavItem {
@@ -32,6 +33,9 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const filterRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 
@@ -110,6 +114,20 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+    const item = items[index];
+    const targetId = item.href.replace(/^\/?#?/, '');
+
+    // If not on home page, navigate back to home page with section hash
+    if (location.pathname !== '/') {
+      e.preventDefault();
+      navigate(`/#${targetId}`);
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+
     const liEl = e.currentTarget;
     if (activeIndex === index) return;
 
@@ -123,13 +141,19 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 
     if (textRef.current) {
       textRef.current.classList.remove('active');
-
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
     }
 
     if (filterRef.current) {
       makeParticles(filterRef.current);
+    }
+
+    const el = document.getElementById(targetId);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `/#${targetId}`);
     }
   };
 
@@ -167,13 +191,28 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     return () => resizeObserver.disconnect();
   }, [activeIndex]);
 
-  // Scroll Spy: Update active index based on scroll position
+  // Scroll to hash element when location changes to Home page
   useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, [location.pathname, location.hash]);
+
+  // Scroll Spy: Update active index based on scroll position (only on home page)
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+
     const handleScroll = () => {
       let newActiveIndex = activeIndex;
       // Loop backwards to find the deepest section that is currently in view
       for (let i = items.length - 1; i >= 0; i--) {
-        const id = items[i].href.substring(1); // Remove the '#'
+        const id = items[i].href.replace(/^\/?#?/, '');
         const element = document.getElementById(id);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -191,18 +230,17 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Check once on mount just in case the page is loaded already scrolled
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [items, activeIndex]);
+  }, [items, activeIndex, location.pathname]);
 
   return (
     <div className="gooey-nav-container" ref={containerRef}>
       <nav>
         <ul ref={navRef}>
           {items.map((item, index) => (
-            <li key={index} className={activeIndex === index ? 'active' : ''}>
+            <li key={index} className={activeIndex === index && location.pathname === '/' ? 'active' : ''}>
               <a href={item.href} onClick={e => handleClick(e, index)} onKeyDown={e => handleKeyDown(e, index)}>
                 {item.label}
               </a>

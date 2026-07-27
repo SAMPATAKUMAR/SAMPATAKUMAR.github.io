@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import AppRoute from "./routes/app.route"
 import GooeyNav from "./components/GooeyNav.js"
 import LightRays from "./components/LightRays.tsx"
@@ -21,11 +22,11 @@ export function App() {
   }, [])
 
   const items = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Skills", href: "/#skills" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Contact", href: "/#contact" },
   ]
 
   if (loading) {
@@ -85,24 +86,33 @@ export function App() {
         >
 
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-wider cursor-pointer">
+          <Link to="/" className="text-2xl font-bold tracking-wider cursor-pointer hover:text-blue-400 transition-colors">
             SV
-          </div>
+          </Link>
 
           {/* Navigation */}
-          <GooeyNav
-            items={items}
-            particleCount={20}
-            particleDistances={[90, 10]}
-            particleR={300}
-            initialActiveIndex={0}
-            animationTime={600}
-            timeVariance={600}
-            colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-          />
+          <div className="flex items-center gap-6">
+            <GooeyNav
+              items={items}
+              particleCount={20}
+              particleDistances={[90, 10]}
+              particleR={300}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={600}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            />
 
+            <div className="hidden sm:flex items-center gap-2 pl-4 border-l border-white/10">
+              <Link
+                to="/blog"
+                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-blue-300 hover:text-white transition-all flex items-center gap-1.5"
+              >
+                Blog
+              </Link>
+            </div>
+          </div>
         </div>
-
       </nav>
 
       {/* Main Content */}
