@@ -484,9 +484,13 @@ export default function Home() {
 
           {/* Project Card 2 */}
           <div className="rounded-3xl overflow-hidden bg-gray-900/40 border border-gray-700 backdrop-blur-lg hover:scale-105 transition-all duration-500 group">
-            <div className="w-full h-52 bg-gradient-to-br from-blue-900/40 to-cyan-900/40 relative overflow-hidden flex items-center justify-center">
-              <span className="text-gray-100 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">AGRICULTURE E-COMMERCE</span>
-            </div>
+            <div className="w-full h-52 relative overflow-hidden rounded-t-3xl">
+  <img
+    src="/agri.png"
+    alt="Agriculture E-Commerce"
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+  />
+</div>
             
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-3 text-white">Agriculture E-Commerce</h2>
@@ -501,9 +505,24 @@ export default function Home() {
               </div>
               
               <div className="flex gap-4 mt-6">
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">Live Demo</button>
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">GitHub</button>
-              </div>
+  <a
+    href="https://krishi-kendra.vercel.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
+  >
+    Live Demo
+  </a>
+
+  <a
+    href="https://github.com/sampatakumar/Krishi-Kendra"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
+  >
+    GitHub
+  </a>
+</div>
             </div>
           </div>
 
