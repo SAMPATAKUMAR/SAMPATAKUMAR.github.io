@@ -163,7 +163,7 @@ export default function Blog() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 pt-20 sm:pt-12 px-4 sm:px-6 lg:px-8 font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 pt-8 sm:pt-10 px-4 sm:px-6 lg:px-8 font-sans selection:bg-blue-500/30">
       <div className="max-w-7xl mx-auto">
         {/* Header / Hero */}
         <header className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-blue-900/20 via-slate-900/60 to-slate-950 border border-slate-800/80 p-8 sm:p-12 mb-12 shadow-2xl backdrop-blur-xl">
