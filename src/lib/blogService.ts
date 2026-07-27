@@ -286,7 +286,7 @@ export const savePostAsync = async (post: Partial<BlogPost>): Promise<BlogPost> 
     author: getAuthorDetails(post.author)
   }
   try {
-    const isEdit = !!post.id && post.id.length >= 10
+    const isEdit = !!post.id
     const url = isEdit ? `${API_BASE}/${post.id}` : API_BASE
     const method = isEdit ? 'PUT' : 'POST'
 
@@ -295,7 +295,6 @@ export const savePostAsync = async (post: Partial<BlogPost>): Promise<BlogPost> 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postWithAuthor)
     })
-
 
     if (res.ok) {
       const data = await res.json()
@@ -308,12 +307,12 @@ export const savePostAsync = async (post: Partial<BlogPost>): Promise<BlogPost> 
   } catch (err) {
     console.warn('Backend API unavailable, saving to localStorage fallback:', err)
   }
-  return savePost(post)
+  return savePost(postWithAuthor)
 }
 
 export const deletePostAsync = async (id: string): Promise<void> => {
   try {
-    if (id.length >= 10) {
+    if (id) {
       await fetch(`${API_BASE}/${id}`, { method: 'DELETE' })
     }
   } catch (err) {
@@ -325,7 +324,7 @@ export const deletePostAsync = async (id: string): Promise<void> => {
 export const togglePublishStatusAsync = async (id: string, currentStatus: string): Promise<BlogPost | undefined> => {
   const nextStatus = currentStatus === 'published' ? 'draft' : 'published'
   try {
-    if (id.length >= 10) {
+    if (id) {
       const res = await fetch(`${API_BASE}/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -347,7 +346,7 @@ export const togglePublishStatusAsync = async (id: string, currentStatus: string
 
 export const likePostAsync = async (id: string): Promise<number> => {
   try {
-    if (id.length >= 10) {
+    if (id) {
       const res = await fetch(`${API_BASE}/${id}/like`, { method: 'POST' })
       if (res.ok) {
         const data = await res.json()
@@ -364,7 +363,7 @@ export const likePostAsync = async (id: string): Promise<number> => {
 
 export const incrementViewsAsync = async (id: string): Promise<number> => {
   try {
-    if (id.length >= 10) {
+    if (id) {
       const res = await fetch(`${API_BASE}/${id}`)
       if (res.ok) {
         const data = await res.json()

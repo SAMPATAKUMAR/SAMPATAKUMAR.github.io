@@ -89,13 +89,7 @@ router.get('/', async (req, res) => {
     if (status) filter.status = status
     if (category && category !== 'All') filter.category = category
 
-    let blogs = await Blog.find(filter).sort({ createdAt: -1 })
-
-    // Auto seed if database is empty
-    if (blogs.length === 0 && Object.keys(filter).length === 0) {
-      blogs = await Blog.insertMany(INITIAL_SEED_POSTS)
-    }
-
+    const blogs = await Blog.find(filter).sort({ createdAt: -1 })
     res.json(blogs)
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch blogs', message: err.message })
@@ -176,7 +170,12 @@ router.put('/:id', async (req, res) => {
         role: 'Student'
       }
     }
-    const updated = await Blog.findByIdAndUpdate(id, data, { new: true, runValidators: true })
+    let updated
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      updated = await Blog.findByIdAndUpdate(id, data, { new: true, runValidators: true })
+    } else {
+      updated = await Blog.findOneAndUpdate({ slug: id }, data, { new: true, runValidators: true })
+    }
     if (!updated) {
       return res.status(404).json({ error: 'Blog post not found' })
     }
@@ -194,7 +193,12 @@ router.delete('/:id', async (req, res) => {
 
   try {
     const { id } = req.params
-    const deleted = await Blog.findByIdAndDelete(id)
+    let deleted
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      deleted = await Blog.findByIdAndDelete(id)
+    } else {
+      deleted = await Blog.findOneAndDelete({ $or: [{ slug: id }, { _id: id }] })
+    }
     if (!deleted) {
       return res.status(404).json({ error: 'Blog post not found' })
     }
