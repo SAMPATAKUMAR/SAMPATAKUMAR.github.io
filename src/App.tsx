@@ -74,24 +74,16 @@ export function App() {
       >
 
         <div
-          className="
-          max-w-7xl
-          mx-auto
-          h-16
-          px-6
-          flex
-          items-center
-          justify-between
-          "
+          className="max-w-7xl mx-auto h-16 px-3 sm:px-6 flex items-center justify-between"
         >
 
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold tracking-wider cursor-pointer hover:text-blue-400 transition-colors">
+          <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wider cursor-pointer hover:text-blue-400 transition-colors shrink-0">
             SV
           </Link>
 
           {/* Navigation */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1.5 sm:gap-4 overflow-x-auto max-w-[calc(100vw-55px)] scrollbar-none py-1">
             <GooeyNav
               items={items}
               particleCount={20}
@@ -103,10 +95,10 @@ export function App() {
               colors={[1, 2, 3, 1, 2, 3, 1, 4]}
             />
 
-            <div className="hidden sm:flex items-center gap-2 pl-4 border-l border-white/10">
+            <div className="flex items-center gap-2 pl-1.5 sm:pl-4 border-l border-white/10 shrink-0">
               <Link
                 to="/blog"
-                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-blue-300 hover:text-white transition-all flex items-center gap-1.5"
+                className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-400/30 text-[11px] sm:text-xs font-semibold text-blue-300 hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap"
               >
                 Blog
               </Link>
