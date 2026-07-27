@@ -228,7 +228,10 @@ export const savePostsToStorage = (posts: BlogPost[]): void => {
 }
 
 // API Backend Integration Helpers with LocalStorage Fallback
-const rawApiUrl = import.meta.env.VITE_API_URL
+const RENDER_BACKEND_URL = 'https://sampatakumar-github-io.onrender.com'
+const rawApiUrl =
+  import.meta.env.VITE_API_URL ||
+  (typeof window !== 'undefined' && window.location.hostname.includes('github.io') ? RENDER_BACKEND_URL : '')
 const API_BASE = rawApiUrl ? `${rawApiUrl.replace(/\/$/, '')}/api/blogs` : '/api/blogs'
 
 export const getAuthorDetails = (author?: any) => {
