@@ -75,6 +75,7 @@ const INITIAL_SEED_PROJECTS = [
 
 // Helper to check DB connection
 const isDbConnected = () => mongoose.connection.readyState === 1
+let hasInitiallySeeded = false
 
 // GET /api/projects - Get all projects
 router.get('/', async (req, res) => {
@@ -84,9 +85,12 @@ router.get('/', async (req, res) => {
 
   try {
     let projects = await Project.find().sort({ createdAt: -1 })
-    if (projects.length === 0) {
-      // Seed default projects if DB is empty
+    if (projects.length === 0 && !hasInitiallySeeded) {
+      // Seed default projects ONCE if DB is completely fresh
       projects = await Project.insertMany(INITIAL_SEED_PROJECTS)
+      hasInitiallySeeded = true
+    } else {
+      hasInitiallySeeded = true
     }
     res.json(projects)
   } catch (err) {
@@ -137,8 +141,17 @@ router.put('/:id', async (req, res) => {
   }
 
   try {
-    const updated = await Project.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
-    if (!updated) return res.status(404).json({ error: 'Project not found' })
+    let updated
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      updated = await Project.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+    }
+    if (!updated) {
+      updated = await Project.findOneAndUpdate({ $or: [{ _id: id }, { id: id }] }, req.body, { new: true, runValidators: true })
+    }
+    if (!updated) {
+      updated = new Project(req.body)
+      await updated.save()
+    }
     res.json(updated)
   } catch (err) {
     res.status(400).json({ error: 'Failed to update project', message: err.message })
@@ -153,9 +166,14 @@ router.delete('/:id', async (req, res) => {
   }
 
   try {
-    const deleted = await Project.findByIdAndDelete(id)
-    if (!deleted) return res.status(404).json({ error: 'Project not found' })
-    res.json({ message: 'Project deleted successfully', id })
+    let deleted
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      deleted = await Project.findByIdAndDelete(id)
+    }
+    if (!deleted) {
+      deleted = await Project.findOneAndDelete({ $or: [{ _id: id }, { id: id }] })
+    }
+    res.json({ message: 'Project deleted successfully', id, deleted })
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete project', message: err.message })
   }

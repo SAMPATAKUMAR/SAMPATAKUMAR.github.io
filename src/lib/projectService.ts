@@ -109,7 +109,7 @@ export async function fetchProjectsAsync(): Promise<Project[]> {
     })
     if (response.ok) {
       const data = await response.json()
-      if (Array.isArray(data) && data.length > 0) {
+      if (Array.isArray(data)) {
         const mapped = data.map(mapProject)
         localStorage.setItem(STORAGE_KEY, JSON.stringify(mapped))
         return mapped
@@ -122,7 +122,7 @@ export async function fetchProjectsAsync(): Promise<Project[]> {
   // Fallback to localStorage
   try {
     const data = localStorage.getItem(STORAGE_KEY)
-    if (data) {
+    if (data !== null) {
       const parsed = JSON.parse(data)
       return parsed.map(mapProject)
     }
@@ -130,7 +130,7 @@ export async function fetchProjectsAsync(): Promise<Project[]> {
     console.error('Error reading projects from LocalStorage', e)
   }
 
-  // Fallback to default static list
+  // Fallback to default static list on initial run
   localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_PROJECTS))
   return INITIAL_PROJECTS
 }
