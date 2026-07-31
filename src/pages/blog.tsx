@@ -485,7 +485,7 @@ export default function Blog() {
 
       {/* Article Reader Modal */}
       {activePost && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-fadeIn">
+        <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-950/85 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-fadeIn">
           <div
             className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-y-auto flex flex-col font-sans text-slate-200"
             onClick={(e) => e.stopPropagation()}

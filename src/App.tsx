@@ -42,18 +42,18 @@ export function App() {
 
         <LightRays
           raysOrigin="top-center"
-          raysColor="#ffffff"
-          raysSpeed={1}
-          lightSpread={0.5}
-          rayLength={3}
+          raysColor="#10b981"
+          raysSpeed={0.8}
+          lightSpread={0.6}
+          rayLength={3.5}
           followMouse={true}
-          mouseInfluence={0.1}
+          mouseInfluence={0.12}
           noiseAmount={0}
           distortion={0}
-          className="w-full h-full"
-          pulsating={false}
-          fadeDistance={1}
-          saturation={1}
+          className="w-full h-full opacity-60"
+          pulsating={true}
+          fadeDistance={1.2}
+          saturation={1.2}
         />
 
       </div>
@@ -67,9 +67,10 @@ export function App() {
         left-0
         w-full
         z-50
-        backdrop-blur-md
-        bg-black/10
-        border-b border-white/10
+        backdrop-blur-xl
+        bg-[#0b0f19]/75
+        border-b border-emerald-500/20
+        shadow-[0_4px_20px_rgba(0,0,0,0.5)]
         "
       >
 
@@ -78,8 +79,9 @@ export function App() {
         >
 
           {/* Logo */}
-          <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wider cursor-pointer hover:text-blue-400 transition-colors shrink-0">
-            SV
+          <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wider cursor-pointer hover:text-emerald-400 transition-all flex items-center gap-2 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]"></span>
+            <span className="text-gradient-emerald font-extrabold">SV</span>
           </Link>
 
           {/* Navigation */}
@@ -95,10 +97,16 @@ export function App() {
               colors={[1, 2, 3, 1, 2, 3, 1, 4]}
             />
 
-            <div className="flex items-center gap-2 pl-1.5 sm:pl-4 border-l border-white/10 shrink-0">
+            <div className="flex items-center gap-2 pl-1.5 sm:pl-4 border-l border-emerald-500/20 shrink-0">
+              <Link
+                to="/projects"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-semibold text-emerald-400 hover:text-emerald-200 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap"
+              >
+                Projects
+              </Link>
               <Link
                 to="/blog"
-                className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-400/30 text-[11px] sm:text-xs font-semibold text-blue-300 hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap"
+                className="px-3 py-1.5 rounded-xl bg-slate-900/60 hover:bg-emerald-500/10 border border-slate-700 hover:border-emerald-500/30 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-all flex items-center gap-1.5 whitespace-nowrap"
               >
                 Blog
               </Link>

@@ -1,14 +1,24 @@
 import ProfileCard from '../components/ProfileCard.tsx'
 import ScrollReveal from '../components/ScrollReveal.tsx'
-import { FaGithub, FaLinkedin } from "react-icons/fa"
-import { useEffect } from "react";
+import ProjectCarousel from '../components/ProjectCarousel.tsx'
+import { FaGithub, FaLinkedin, FaTerminal, FaCode, FaFileDownload } from "react-icons/fa"
+import { useEffect, useState } from "react";
 import BlurText from "../components/BlurText.js"
 import TextType from '../components/TextType.tsx';
+import { fetchProjectsAsync, type Project } from '../lib/projectService.ts'
 import '../styles/home.css'
 
 export default function Home() {
+  const [projects, setProjects] = useState<Project[]>([])
 
-    useEffect(() => {
+  useEffect(() => {
+    fetchProjectsAsync().then((data) => setProjects(data))
+
+    const handleStorage = () => {
+      fetchProjectsAsync().then((data) => setProjects(data))
+    }
+    window.addEventListener('storage', handleStorage)
+
     // Load LinkedIn script once
     const script = document.createElement("script");
     script.src = "https://platform.linkedin.com/badges/js/profile.js";
@@ -17,17 +27,15 @@ export default function Home() {
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup if component unmounts
-      document.body.removeChild(script);
+      window.removeEventListener('storage', handleStorage)
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
-  const handleAnimationComplete = () => {
-    console.log('Animation completed!');
-  };
-
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden text-slate-100">
 
       {/* ================= HOME / HERO ================= */}
 
@@ -54,7 +62,7 @@ export default function Home() {
           items-center
           justify-between
           gap-12
-          lg:gap-24
+          lg:gap-16
           "
         >
 
@@ -65,126 +73,101 @@ export default function Home() {
             flex
             flex-col
             max-w-2xl
-            gap-8
+            gap-6
             text-center
             lg:text-left
             "
           >
-
-            <h3 className="font-bold leading-tight text-4xl sm:text-5xl lg:text-2xl">
-
-              <BlurText text="Hi there! I am " />
-
-
-              <BlurText
-                text="Sampatakumar V"
-                delay={200}
-                animateBy="words"
-                direction="top"
-                onAnimationComplete={handleAnimationComplete}
-                className="text-5xl mb-8"
-              /></h3>
-
-
-
-
-            <div className="text-gray-100 text-base sm:text-lg lg:text-xl leading-8">
-
-
-
-              <TextType
-                // text={["Text typing effect", "for your websites", "Happy coding!"]}
-                typingSpeed={75}
-                pauseDuration={1500}
-                showCursor
-                cursorCharacter="_"
-                text={[
-                  "Computer Science Engineering student passionate about Software Development, Web Technologies, and Artificial Intelligence.",
-                  "Building scalable web applications with React.js, JavaScript, Firebase, and MongoDB.",
-                  "Transforming ideas into interactive digital experiences through clean and efficient code.",
-                  "Continuously learning modern technologies and exploring innovative solutions to real-world problems.",
-                  "Passionate about creating user-friendly applications that combine functionality with great design.",
-                  "Focused on full-stack development, problem-solving, and writing maintainable software.",
-                  "Enthusiastic about AI, cloud technologies, and the future of intelligent applications.",
-                  "Driven by curiosity, creativity, and a commitment to continuous improvement.",
-                  "Turning complex challenges into simple and impactful software solutions.",
-                  "Aspiring Software Engineer dedicated to building products that make a difference."
-                ]}
-                cursorBlinkDuration={0.5}
-              />
-
+            {/* Live Availability Badge */}
+            <div className="flex justify-center lg:justify-start">
+              <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide uppercase shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Full-Stack Web Developer & Software Engineer
+              </span>
             </div>
 
+            <div className="space-y-2">
+              <h3 className="text-xl sm:text-2xl font-medium text-emerald-400/90 tracking-wide">
+                <BlurText text="Hello, World! I am" />
+              </h3>
+
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                <span className="text-gradient-emerald">Sampatakumar V</span>
+              </h1>
+            </div>
+
+            <div className="text-slate-300 text-base sm:text-lg leading-relaxed min-h-[90px]">
+              <TextType
+                typingSpeed={65}
+                pauseDuration={1800}
+                showCursor
+                cursorCharacter="▋"
+                text={[
+                  "Computer Science Engineer passionate about Full-Stack Web Development & System Architecture.",
+                  "Building high-performance web apps using React, Node.js, TypeScript, and MongoDB.",
+                  "Architecting clean REST APIs, microservices, and AI-powered web solutions.",
+                  "Transforming complex requirements into seamless, user-centric web applications.",
+                  "Always exploring cutting-edge web frameworks, cloud technology, and AI integrations."
+                ]}
+                cursorBlinkDuration={0.6}
+              />
+            </div>
+
+            {/* Live Interactive Terminal Window */}
+            <div className="glass-panel rounded-2xl p-4 border border-emerald-500/30 font-mono text-xs text-slate-300 shadow-2xl text-left">
+              <div className="flex items-center justify-between pb-2.5 border-b border-emerald-500/20 mb-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                  <span className="ml-2 text-slate-400 text-[11px] flex items-center gap-1">
+                    <FaTerminal className="text-emerald-400 text-xs" /> developer@sampatakumar:~
+                  </span>
+                </div>
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">JS/TS</span>
+              </div>
+              <div className="space-y-1 leading-relaxed">
+                <p><span className="text-emerald-400">const</span> <span className="text-cyan-300">stack</span> = &#123;</p>
+                <p className="pl-4"><span className="text-slate-400">frontend:</span> [<span className="text-emerald-300">'React.js'</span>, <span className="text-emerald-300">'TypeScript'</span>, <span className="text-emerald-300">'Tailwind CSS'</span>],</p>
+                <p className="pl-4"><span className="text-slate-400">backend:</span> [<span className="text-cyan-300">'Node.js'</span>, <span className="text-cyan-300">'Express.js'</span>, <span className="text-cyan-300">'REST APIs'</span>],</p>
+                <p className="pl-4"><span className="text-slate-400">databases:</span> [<span className="text-emerald-300">'MongoDB'</span>, <span className="text-emerald-300">'Firebase'</span>, <span className="text-emerald-300">'PostgreSQL'</span>]</p>
+                <p>&#125;;</p>
+              </div>
+            </div>
 
             {/* BUTTONS */}
-
-            <div
-              className="
-              flex
-              flex-wrap
-              gap-4
-              justify-center
-              lg:justify-start
-              "
-            >
-
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
               <button
                 onClick={() =>
-                  window.open(
-                    "https://linkedin.com/in/sampatakumar-sv",
-                    "_blank"
-                  )
+                  window.open("https://linkedin.com/in/sampatakumar-sv", "_blank")
                 }
-                className="
-                flex items-center gap-2
-                px-6 py-3
-                rounded-xl
-                border border-gray-700
-                hover:bg-white
-                hover:text-black
-                transition-all duration-300
-                btn-primary
-                "
+                className="emerald-glow-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm"
               >
-                <FaLinkedin size={20} />
+                <FaLinkedin size={18} />
                 LinkedIn
               </button>
 
-
               <button
                 onClick={() =>
-                  window.open(
-                    "https://github.com/sampatakumar",
-                    "_blank"
-                  )
+                  window.open("https://github.com/sampatakumar", "_blank")
                 }
-                className="
-                flex items-center gap-2
-                px-6 py-3
-                rounded-xl
-                border border-gray-700
-                hover:bg-white
-                hover:text-black
-                transition-all duration-300
-                btn-primary
-                "
+                className="emerald-glow-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm"
               >
-                <FaGithub size={20} />
+                <FaGithub size={18} />
                 GitHub
               </button>
-
             </div>
-
           </div>
 
-
           {/* RIGHT PROFILE CARD */}
-
-          <div className="scale-90 lg:scale-100">
-
+          <div className="scale-95 lg:scale-100 relative">
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-xl opacity-75 animate-pulse pointer-events-none"></div>
             <ProfileCard
               name="Sampatakumar V"
-              title="Software Engineer"
+              title="Full-Stack Developer"
               handle="sampatakumar_sv"
               status="Online"
               contactText="Contact Me"
@@ -194,224 +177,227 @@ export default function Home() {
               enableTilt
               enableMobileTilt
               behindGlowEnabled
-              behindGlowColor="rgba(150,190,255,0.67)"
-              innerGradient="
-              linear-gradient(
-              145deg,
-              #60496e8c 0%,
-              #71C4FF44 100%
-              )"
+              behindGlowColor="rgba(16, 185, 129, 0.45)"
+              innerGradient="linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(16, 185, 129, 0.2) 100%)"
               onContactClick={() =>
-                window.location.href =
-                "mailto:sampatakumarsv@gmail.com"
+                window.location.href = "mailto:sampatakumarsv@gmail.com"
               }
             />
-
           </div>
 
         </div>
 
       </section>
 
-
-      <hr className="border-gray-700 w-[90%] mx-auto" />
-
+      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
 
       {/* ================= ABOUT ================= */}
-<section
-  id="about"
-  className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
->
-  <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
-    About Me
-  </ScrollReveal>
+      <section
+        id="about"
+        className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
+      >
+        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold tracking-wide text-center text-gradient-emerald mb-16">
+          About Me
+        </ScrollReveal>
 
-  <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 text-center text-lg md:text-xl font-normal text-gray-100 leading-relaxed lg:leading-loose">
-    <BlurText
-      text="I am Sampatakumar, a Computer Science Engineering student passionate about Software Development, Web Technologies, and Artificial Intelligence. I enjoy building modern, scalable, and user-friendly applications that solve real-world problems."
-      delay={200}
-      animateBy="words"
-    />
-    <BlurText
-      text="My expertise includes React.js, JavaScript, Firebase, MongoDB, and Node.js. I am constantly exploring emerging technologies, improving my development skills, and creating projects that combine functionality with exceptional user experiences."
-      delay={400}
-      animateBy="words"
-    />
-    <BlurText
-      text="Beyond coding, I enjoy learning new concepts, solving challenging problems, and transforming innovative ideas into impactful digital solutions. My goal is to grow as a software engineer and contribute to meaningful technology that makes a difference."
-      delay={600}
-      animateBy="words"
-    />
-  </div>
-</section>
+        <div className="w-full max-w-4xl mx-auto glass-panel glass-panel-hover p-8 md:p-12 rounded-3xl space-y-6 text-center text-base md:text-lg text-slate-300 leading-relaxed">
+          <BlurText
+            text="I am Sampatakumar, a Computer Science Engineering student passionate about Software Development, Full-Stack Web Engineering, and Artificial Intelligence. I take pride in building scalable, resilient, and responsive digital products."
+            delay={200}
+            animateBy="words"
+          />
+          <BlurText
+            text="My core tech stack spans React.js, TypeScript, Node.js, Express, MongoDB, and Firebase. I focus on clean software architecture, component-driven UI design, and reliable backend services."
+            delay={400}
+            animateBy="words"
+          />
+          <BlurText
+            text="Driven by curiosity and high technical standards, I continuously turn complex ideas into refined, impactful applications. I am seeking opportunities to bring value to innovative engineering teams."
+            delay={600}
+            animateBy="words"
+          />
+        </div>
+      </section>
 
-      <hr className="border-gray-700 w-[90%] mx-auto" />
-
+      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
 
       {/* ================= SKILLS ================= */}
+      <section
+        id="skills"
+        className="min-h-screen px-6 lg:px-20 py-24 flex flex-col items-center"
+      >
+        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold text-center text-gradient-emerald mb-16">
+          Technical Skills & Expertise
+        </ScrollReveal>
 
-      {/* ================= SKILLS ================= */}
+        <div className="w-full max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-    <section
-  id="skills"
-  className="min-h-screen px-6 lg:px-20 py-24 flex flex-col items-center"
->
-  <ScrollReveal textClassName="text-6xl md:text-5xl font-bolder text-center text-white mb-16">
-    Skills
-  </ScrollReveal>
+            {/* Frontend */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <FaCode className="text-emerald-400 text-xl" />
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Frontend
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "React Router", "Responsive Design", "Tailwind CSS"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-  <div className="w-full max-w-7xl">
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {/* Backend */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <FaTerminal className="text-cyan-400 text-xl" />
+                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Backend
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Node.js", "Express.js", "REST APIs", "JWT Auth", "Microservices"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-      {/* Frontend */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-purple-500/50 hover:bg-purple-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-purple-300 transition-colors">
-          Frontend
-        </h3>
+            {/* Database */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Database & Cloud
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["MongoDB", "Firebase", "Firestore", "PostgreSQL", "SQL"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-        <div className="flex flex-wrap gap-2">
-          {["HTML5", "CSS3", "JavaScript", "React.js", "React Router", "Responsive Design", "UI/UX"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
+            {/* Tools */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-yellow-300 transition-colors">
+                  Tools & DevOps
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Git", "GitHub", "Vite", "Postman", "Vercel", "Firebase Auth"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 hover:bg-yellow-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Languages */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Languages
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["JavaScript", "TypeScript", "Python", "Java", "C++"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Core Concepts */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-cyan-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Core CS Concepts
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["DSA", "OOP", "System Architecture", "Software Design", "Clean Code"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Exploring */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-teal-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-teal-300 transition-colors">
+                  Innovations
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["AI Integration", "LLM APIs", "Next.js", "Docker", "Cloud Native"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Professional Mindset */}
+            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Professional Competencies
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Agile Workflow", "Problem Solving", "Technical Communication", "Code Review"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Backend */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-blue-500/50 hover:bg-blue-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">
-          Backend
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["Node.js", "Express.js", "REST APIs", "Authentication"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Database */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-green-500/50 hover:bg-green-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-green-300 transition-colors">
-          Database
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["MongoDB", "Firebase", "Firestore", "SQL"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Tools */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-yellow-500/50 hover:bg-yellow-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-yellow-300 transition-colors">
-          Tools & Tech
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["Git", "GitHub", "Firebase Auth", "Vite", "Postman"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Languages */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-pink-500/50 hover:bg-pink-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-pink-300 transition-colors">
-          Languages
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["JavaScript", "Python", "Java"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Core Concepts */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-indigo-500/50 hover:bg-indigo-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-indigo-300 transition-colors">
-          Core Concepts
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["DSA", "OOP", "Problem Solving", "Software Design"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Exploring */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-cyan-500/50 hover:bg-cyan-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors">
-          Exploring
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["AI", "Machine Learning", "Cloud", "Next.js"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Soft Skills */}
-      <div className="h-full p-6 rounded-3xl border border-gray-800 bg-gray-900/20 backdrop-blur-lg hover:border-orange-500/50 hover:bg-orange-900/10 transition-all duration-500 group">
-        <h3 className="text-lg font-bold text-white mb-4 group-hover:text-orange-300 transition-colors">
-          Soft Skills
-        </h3>
-
-        <div className="flex flex-wrap gap-2">
-          {["Communication", "Teamwork", "Leadership", "Quick Learning"].map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-100"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-      <hr className="border-gray-700 w-[90%] mx-auto" />
+      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
 
       {/* ================= PROJECTS ================= */}
 
@@ -420,363 +406,169 @@ export default function Home() {
         className="px-6 lg:px-20 py-24"
       >
 
-        <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
-          Project Showcase
+        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold text-center text-gradient-emerald mb-16">
+          Featured Full-Stack Projects
         </ScrollReveal>
 
-        <div
-          className="
-    grid
-    grid-cols-1
-    md:grid-cols-2
-    lg:grid-cols-3
-    gap-8
-    max-w-7xl
-    mx-auto
-    "
-        >
+        <ProjectCarousel projects={projects} />
+      </section>
 
-          {/* Project Card 1 */}
+      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
 
-          <div
-            className="
-      rounded-3xl
-      overflow-hidden
-      bg-gray-900/40
-      border border-gray-700
-      backdrop-blur-lg
-      hover:scale-105
-      transition-all
-      duration-500
-      "
-          >
+      {/* ================= CONTACT ================= */}
 
-            <div className="w-full h-52 bg-gradient-to-br from-indigo-900/40 to-purple-900/40 relative overflow-hidden flex items-center justify-center">
-              <span className="text-gray-100 font-medium tracking-widest text-sm group-hover:scale-110 transition-transform duration-500">SMART SKILL HUBX</span>
-            </div>
+      <section
+        id="contact"
+        className="px-6 lg:px-20 py-24 pb-36"
+      >
+        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold text-center text-gradient-emerald mb-16">
+          Get In Touch
+        </ScrollReveal>
 
-            <div className="p-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-start">
 
-              <h2 className="text-2xl font-bold mb-3">
-                Smart Skill HubX
-              </h2>
+          {/* CONTACT FORM */}
+          <div className="glass-panel glass-panel-hover rounded-3xl p-6 lg:p-10">
 
-              <p className="text-gray-100 text-sm leading-7">
-                AI-powered learning platform that recommends
-                personalized learning paths and skill development.
-              </p>
-
-              <div className="flex gap-2 mt-4 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">React</span>
-                <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-medium">Node.js</span>
-                <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs font-medium">MongoDB</span>
+            <form
+              className="flex flex-col gap-6"
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Message sent successfully!");
+              }}
+            >
+              <div className="flex flex-col gap-2">
+                <label className="text-slate-200 font-semibold text-sm">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                />
               </div>
 
-              <div className="flex gap-4 mt-6">
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">Live Demo</button>
-                <button className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium">GitHub</button>
+              <div className="flex flex-col gap-2">
+                <label className="text-slate-200 font-semibold text-sm">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                />
               </div>
 
-            </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-slate-200 font-semibold text-sm">
+                  Message
+                </label>
+                <textarea
+                  rows={5}
+                  placeholder="Hi Sampatakumar, I'd like to discuss a software engineering opportunity..."
+                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none resize-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="emerald-glow-btn mt-2 py-4 rounded-xl font-bold text-white tracking-wide text-base shadow-lg"
+              >
+                Send Message
+              </button>
+            </form>
 
           </div>
 
+          {/* RIGHT COLUMN */}
+          <div className="flex flex-col gap-6">
 
-          {/* Project Card 2 */}
-          <div className="rounded-3xl overflow-hidden bg-gray-900/40 border border-gray-700 backdrop-blur-lg hover:scale-105 transition-all duration-500 group">
-            <div className="w-full h-52 relative overflow-hidden rounded-t-3xl">
-  <img
-    src="/agri.png"
-    alt="Agriculture E-Commerce"
-    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-  />
-</div>
-            
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-3 text-white">Agriculture E-Commerce</h2>
-              <p className="text-gray-100 text-sm leading-7">
-                Online platform for farmers and customers to directly buy and sell agricultural products with real-time tracking.
-              </p>
-              
-              <div className="flex gap-2 mt-4 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-medium">React</span>
-                <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-medium">Node.js</span>
-                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-medium">MongoDB</span>
+            {/* LinkedIn Card */}
+            <div className="glass-panel glass-panel-hover rounded-3xl p-6 flex justify-center">
+              <div
+                className="badge-base LI-profile-badge"
+                data-locale="en_US"
+                data-size="large"
+                data-theme="dark"
+                data-type="VERTICAL"
+                data-vanity="sampatakumar-sv"
+                data-version="v1"
+              >
+                <a
+                  className="badge-base__link LI-simple-link"
+                  href="https://in.linkedin.com/in/sampatakumar-sv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Sampatakumar’s LinkedIn Profile"
+                ></a>
               </div>
-              
-              <div className="flex gap-4 mt-6">
-  <a
-    href="https://krishi-kendra.vercel.app/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
-  >
-    Live Demo
-  </a>
-
-  <a
-    href="https://github.com/sampatakumar/Krishi-Kendra"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
-  >
-    GitHub
-  </a>
-</div>
             </div>
+
+            {/* GitHub Card */}
+            <a
+              href="https://github.com/sampatakumar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-panel glass-panel-hover rounded-3xl p-6 block group"
+            >
+              <div className="flex gap-5 items-center">
+                <img
+                  src="https://avatars.githubusercontent.com/u/148532254?v=4"
+                  alt="GitHub"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
+                />
+
+                <div>
+                  <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    GitHub Profile
+                  </h3>
+                  <p className="text-emerald-400 text-sm font-mono">
+                    @sampatakumar
+                  </p>
+                  <p className="text-slate-400 text-xs mt-1">
+                    Explore full-stack web repos & open-source solutions.
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            {/* Resume Button */}
+            <a
+              href="/Sampatakumar_Resume.pdf"
+              download
+              className="w-full"
+            >
+              <button
+                className="emerald-glow-btn w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-2 shadow-lg"
+              >
+                <FaFileDownload /> Download Resume (PDF)
+              </button>
+            </a>
+
           </div>
 
-          {/* Project Card 3 */}
-          <div className="rounded-3xl overflow-hidden bg-gray-900/40 border border-gray-700 backdrop-blur-lg hover:scale-105 transition-all duration-500 group">
-           <div className="w-full h-52 relative overflow-hidden rounded-t-3xl">
-  <img
-    src="/resumeai.png"
-    alt="ResumeAI"
-    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-  />
-</div>
-            
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-3 text-white">ResumeAI</h2>
-              <p className="text-gray-100 text-sm leading-7">
-                AI-powered career platform that builds ATS-friendly resumes, tailors them to job descriptions, and generates professional portfolio websites.
-              </p>
-              
-              <div className="flex gap-2 mt-4 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 text-xs font-medium">React</span>
-                <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-medium">Express.js</span>
-                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Supabase</span>
-                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Groq AI</span>
-                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">Firebase</span>
-              </div>
-              
-              <div className="flex gap-4 mt-6">
-  <a
-    href="https://resumeaidev.vercel.app"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
-  >
-    Live Demo
-  </a>
-
-  <a
-    href="https://github.com/sampatakumar/ResumeAI"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-4 py-2 rounded-xl border border-gray-600 hover:bg-white hover:text-black transition-colors text-sm font-medium"
-  >
-    GitHub
-  </a>
-</div>
-            </div>
-          </div>
         </div>
 
       </section>
 
-      <hr className="border-gray-700 w-[90%] mx-auto" />
-
-      {/* ================= CONTACT ================= */}
-
-<section
-  id="contact"
-  className="px-6 lg:px-20 py-24 pb-48 lg:pb-64"
->
-  <ScrollReveal textClassName="text-4xl md:text-5xl font-bold tracking-wide text-center text-white mb-16">
-    Contact Me
-  </ScrollReveal>
-
-  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-start">
-
-    {/* ===========================
-          CONTACT FORM
-    =========================== */}
-    <div className="rounded-3xl bg-gray-900/40 backdrop-blur-lg border border-gray-700 p-6 hover:border-purple-500 lg:p-10 hover:scale-[1.02] transition-all duration-300">
-
-      <form
-        className="flex flex-col gap-6 "
-        onSubmit={(e) => {
-          e.preventDefault();
-          alert("Message sent!");
-        }}
-      >
-        {/* Name */}
-        <div className="flex flex-col gap-2 ">
-          <label className="text-gray-100 font-medium text-sm hover:scale-[1.02]
-            hover:shadow-[0_0_30px_rgba(168,85,247,0.45)]
-            transition-all
-            duration-300">
-            Name
-          </label>
-
-          <input
-            type="text"
-            placeholder="Enter your name"
-            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
-          />
-        </div>
-
-        {/* Email */}
-        <div className="flex flex-col gap-2">
-          <label className="text-gray-100 font-medium text-sm">
-            Email
-          </label>
-
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
-          />
-        </div>
-
-        {/* Message */}
-        <div className="flex flex-col gap-2 pb-26">
-          <label className="text-gray-100 font-medium text-sm">
-            Message
-          </label>
-
-          <textarea
-            rows={6}
-            placeholder="Write your message..."
-            className="p-4 rounded-xl bg-gray-800/60 border border-gray-600 outline-none resize-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition-all text-white placeholder:text-gray-400"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="mt-2 py-4 rounded-xl border border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.45)] transition-all duration-300 font-semibold text-white"
-        >
-          Send Message
-        </button>
-      </form>
-
-    </div>
-
-    {/* ===========================
-            RIGHT COLUMN
-    =========================== */}
-
-    <div className="flex flex-col gap-6">
-
-      {/* ================= LinkedIn ================= */}
-
-      <div className="rounded-3xl  backdrop-blur-lg border border border-gray-700 p-6 hover:border-purple-500 p-4 flex justify-center ">
-
-        <div
-          className="badge-base LI-profile-badge"
-          data-locale="en_US"
-          data-size="large"
-          data-theme="dark"
-          data-type="VERTICAL"
-          data-vanity="sampatakumar-sv"
-          data-version="v1"
-        >
-          <a
-            className="badge-base__link LI-simple-link"
-            href="https://in.linkedin.com/in/sampatakumar-sv"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Sampatakumar’s LinkedIn Profile"
-          ></a>
-        </div>
-
-      </div>
-
-      {/* ================= GitHub ================= */}
-
-      <a
-        href="https://github.com/sampatakumar"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group rounded-3xl backdrop-blur-lg border border-gray-700 p-6 hover:border-purple-500 transition-all duration-300"
-      >
-
-        <div className="flex gap-5">
-
-          <img
-            src="https://avatars.githubusercontent.com/u/148532254?v=4"
-            alt="GitHub"
-            className="w-20 h-20 rounded-full object-cover border-2 border-purple-500"
-          />
-
-          <div>
-
-            <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
-              GitHub
-            </h3>
-
-            <p className="text-purple-400">
-              @sampatakumar
-            </p>
-
-            <p className="text-gray-400 text-sm leading-7 mt-3">
-              Explore my collection of full-stack web applications,
-              AI-powered solutions, Unreal Engine experiments,
-              and open-source projects.
-              Each repository showcases my passion for building
-              modern, scalable, and impactful software.
-            </p>
-
-          </div>
-
-        </div>
-
-      </a>
-
-      {/* ================= Resume ================= */}
-
-      <a
-        href="/Sampatakumar_Resume.pdf"
-        download
-        className="w-full"
-      >
-        <button
-          className="
-            w-full
-            py-4
-            rounded-2xl
-            border border-purple-500
-            text-white
-            text-lg
-            font-semibold
-            hover:scale-[1.02]
-            hover:shadow-[0_0_30px_rgba(168,85,247,0.45)]
-            transition-all
-            duration-300
-          "
-        >
-          📄 Download Resume
-        </button>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
       {/* ================= FOOTER ================= */}
-      <footer className="border-t border-gray-800 bg-gray-900/20 py-12 px-6 mt-12">
+      <footer className="border-t border-emerald-500/20 bg-[#0b0f19]/90 backdrop-blur-lg py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          
-          <div className="text-gray-500 font-light text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Sampatakumar V. All rights reserved.<br/>
-            Built with React & Tailwind CSS.
+
+          <div className="text-slate-400 text-sm text-center md:text-left">
+            &copy; {new Date().getFullYear()} Sampatakumar V. All rights reserved.<br />
+            <span className="text-xs text-slate-500">Architected with React, TypeScript & Cyber Emerald Glassmorphism</span>
           </div>
-          
-          <div className="flex items-center justify-center gap-6 text-gray-500">
-            <a href="https://github.com/sampatakumar" aria-label="Sampatakumar’s GitHub Profile" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+
+          <div className="flex items-center justify-center gap-6 text-slate-400">
+            <a href="https://github.com/sampatakumar" aria-label="Sampatakumar’s GitHub Profile" className="hover:text-emerald-400 hover:scale-110 transition-all text-2xl">
               <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/in/sampatakumar-sv" aria-label="Sampatakumar’s LinkedIn Profile" className="hover:text-purple-400 hover:scale-110 transition-all duration-300 text-2xl">
+            <a href="https://www.linkedin.com/in/sampatakumar-sv" aria-label="Sampatakumar’s LinkedIn Profile" className="hover:text-emerald-400 hover:scale-110 transition-all text-2xl">
               <FaLinkedin />
             </a>
-
           </div>
-          
-          
+
         </div>
       </footer>
 
