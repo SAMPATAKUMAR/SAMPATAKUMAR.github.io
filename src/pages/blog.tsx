@@ -71,9 +71,11 @@ export default function Blog() {
     return () => window.removeEventListener('storage', handleStorage)
   }, [])
 
-  // Auto-open post if ID or slug is in URL (supports ?id=..., &id=..., ?/blog&id=...)
+  const hasAutoOpenedRef = React.useRef(false)
+
+  // Auto-open post if ID or slug is in URL (runs once when posts are loaded)
   useEffect(() => {
-    if (posts.length === 0) return
+    if (posts.length === 0 || hasAutoOpenedRef.current) return
 
     const fullHref = window.location.href
     const searchParams = new URLSearchParams(window.location.search)
@@ -95,6 +97,7 @@ export default function Blog() {
         (p) => p.id === targetId || p.slug === targetId || (p as any)._id === targetId
       )
       if (found) {
+        hasAutoOpenedRef.current = true
         handleOpenPost(found)
       }
     }
