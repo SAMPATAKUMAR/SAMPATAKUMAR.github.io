@@ -133,7 +133,7 @@ export default function Home() {
                 <p><span className="text-emerald-400">const</span> <span className="text-cyan-300">stack</span> = &#123;</p>
                 <p className="pl-4"><span className="text-slate-400">frontend:</span> [<span className="text-emerald-300">'React.js'</span>, <span className="text-emerald-300">'TypeScript'</span>, <span className="text-emerald-300">'Tailwind CSS'</span>],</p>
                 <p className="pl-4"><span className="text-slate-400">backend:</span> [<span className="text-cyan-300">'Node.js'</span>, <span className="text-cyan-300">'Express.js'</span>, <span className="text-cyan-300">'REST APIs'</span>],</p>
-                <p className="pl-4"><span className="text-slate-400">databases:</span> [<span className="text-emerald-300">'MongoDB'</span>, <span className="text-emerald-300">'Firebase'</span>, <span className="text-emerald-300">'PostgreSQL'</span>]</p>
+                <p className="pl-4"><span className="text-slate-400">databases:</span> [<span className="text-emerald-300">'MongoDB'</span>, <span className="text-emerald-300">'Firebase'</span>]</p>
                 <p>&#125;;</p>
               </div>
             </div>
