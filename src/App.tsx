@@ -117,7 +117,7 @@ export function App() {
 
       {/* Main Content */}
 
-      <main className="relative z-10 pt-16">
+      <main className="pt-16">
         <AppRoute />
       </main>
 

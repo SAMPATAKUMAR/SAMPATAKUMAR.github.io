@@ -518,24 +518,27 @@ export default function Blog() {
 
       {/* Article Reader Modal */}
       {activePost && (
-        <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-2 sm:p-4 lg:p-6 animate-fadeIn">
+        <div
+          className="fixed inset-0 z-[100] overflow-y-auto bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-fadeIn"
+          onClick={() => setActivePost(null)}
+        >
           <div
-            className="relative w-full max-w-4xl max-h-[92vh] bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-y-auto flex flex-col font-sans text-slate-200"
+            className="relative w-full max-w-4xl max-h-[85vh] my-auto bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-y-auto flex flex-col font-sans text-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Sticky Top Nav */}
-            <div className="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-3 sm:px-6 py-2.5 sm:py-4 flex items-center justify-between gap-2">
+            <div className="sticky top-0 z-30 bg-slate-900/98 backdrop-blur-md border-b border-slate-800/90 px-3.5 sm:px-6 py-3 flex items-center justify-between gap-2 shrink-0">
               <button
                 onClick={() => setActivePost(null)}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-colors"
               >
-                <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to Articles</span><span className="sm:hidden">Back</span>
+                <ArrowLeft className="w-4 h-4 text-blue-400" /> Back to Articles
               </button>
 
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={() => handleLike(activePost.id)}
-                  className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl border text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-all ${
+                  className={`px-2.5 sm:px-3.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     userLikes[activePost.id]
                       ? 'bg-rose-500/20 border-rose-500/50 text-rose-400'
                       : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
@@ -547,15 +550,16 @@ export default function Blog() {
 
                 <button
                   onClick={() => handleShare(activePost)}
-                  className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-[11px] sm:text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1 sm:gap-1.5 transition-all"
+                  className="px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition-all"
                 >
-                  {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+                  {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5 text-blue-400" />}
                   {copiedLink ? 'Copied!' : 'Share'}
                 </button>
 
                 <button
                   onClick={() => setActivePost(null)}
                   className="p-1.5 sm:p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition-colors"
+                  title="Close modal"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
