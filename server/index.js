@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import blogRoutes from './routes/blog.routes.js'
+import projectRoutes from './routes/project.routes.js'
 
 dotenv.config()
 
@@ -43,6 +44,7 @@ app.get('/api/health', (req, res) => res.json(getHealthStatus()))
 
 // API Routes
 app.use('/api/blogs', blogRoutes)
+app.use('/api/projects', projectRoutes)
 
 // 404 Route Handler
 app.use((req, res) => {

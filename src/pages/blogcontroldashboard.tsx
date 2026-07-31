@@ -837,7 +837,7 @@ export default function BlogControlDashboard() {
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button
-                          onClick={() => handleDeleteProject(proj.id, proj.title)}
+                          onClick={() => handleDeleteProject(proj.id || proj._id || '', proj.title)}
                           className="p-2 rounded-lg bg-slate-800 hover:bg-rose-950 text-rose-400 transition-colors"
                           title="Delete project"
                         >
