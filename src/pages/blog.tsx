@@ -71,6 +71,35 @@ export default function Blog() {
     return () => window.removeEventListener('storage', handleStorage)
   }, [])
 
+  // Auto-open post if ID or slug is in URL (supports ?id=..., &id=..., ?/blog&id=...)
+  useEffect(() => {
+    if (posts.length === 0) return
+
+    const fullHref = window.location.href
+    const searchParams = new URLSearchParams(window.location.search)
+
+    let targetId = searchParams.get('id') || searchParams.get('slug')
+
+    // Parse non-standard redirected URL patterns like /blog&id=... or /?/blog&id=...
+    if (!targetId && fullHref.includes('id=')) {
+      const match = fullHref.match(/id=([a-zA-Z0-9_-]+)/)
+      if (match) targetId = match[1]
+    }
+    if (!targetId && fullHref.includes('slug=')) {
+      const match = fullHref.match(/slug=([a-zA-Z0-9_-]+)/)
+      if (match) targetId = match[1]
+    }
+
+    if (targetId) {
+      const found = posts.find(
+        (p) => p.id === targetId || p.slug === targetId || (p as any)._id === targetId
+      )
+      if (found) {
+        handleOpenPost(found)
+      }
+    }
+  }, [posts])
+
   // Categories list
   const categories = useMemo(() => {
     const set = new Set<string>()
@@ -142,8 +171,9 @@ export default function Blog() {
 
   // Share article link
   const handleShare = (post: BlogPost) => {
-    const url = window.location.origin + `/blog?id=${post.id}`
-    navigator.clipboard.writeText(url)
+    const origin = window.location.origin
+    const shareUrl = `${origin}/blog?id=${post.id || (post as any)._id || post.slug}`
+    navigator.clipboard.writeText(shareUrl)
     setCopiedLink(true)
     setTimeout(() => setCopiedLink(false), 2500)
   }
