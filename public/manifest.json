@@ -1,0 +1,53 @@
+{
+  "name": "Sampatakumar S V - Portfolio & Tech Blog",
+  "short_name": "Sampatakumar",
+  "description": "Portfolio and software engineering blog of Sampatakumar S V showcasing modern web and mobile applications built with React Native, Node.js, MongoDB, and Python.",
+  "start_url": "sampatakumar.github.io/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "en",
+  "categories": ["portfolio", "technology", "software", "development"],
+  "icons": [
+    {
+      "src": "/avatar.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/profile.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "Explore software engineering projects",
+      "url": "/#projects"
+    },
+    {
+      "name": "Skills",
+      "short_name": "Skills",
+      "description": "View technical stack and expertise",
+      "url": "/#skills"
+    },
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Read technical articles and insights",
+      "url": "/blog"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with Sampatakumar",
+      "url": "/#contact"
+    }
+  ]
+}

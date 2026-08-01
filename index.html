@@ -12,54 +12,152 @@
   <meta name="google-site-verification" content="CsY5j_qZzQC5AkwgFQmX6dfiKJY6wXgdFZcwfEGQHEo" />
 
 
+  <!-- Web App Manifest & Mobile Theme -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="apple-touch-icon" href="/profile.png" />
+
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Sampatakumar | RGITX Portfolio">
+  <meta property="og:title" content="Sampatakumar | Software Engineer Portfolio">
   <meta property="og:description"
-    content="Explore projects by Sampatakumar, a software engineering student and developer specializing in React Native, Node.js, MongoDB, Firebase, and Python.">
+    content="Explore projects by Sampatakumar, a software engineer specializing in React Native, Node.js, MongoDB, Firebase, and Python.">
   <meta property="og:url" content="https://sampatakumar.github.io">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ibb.co/8nQPKFBk">
+  <meta property="og:image" content="https://sampatakumar.github.io/avatar.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sampatakumar Portfolio">
   <meta name="twitter:description" content="Clean, modern, and efficient web/mobile apps by Sampatakumar.">
-  <meta name="twitter:image" content="https://ibb.co/8nQPKFBk">
+  <meta name="twitter:image" content="https://sampatakumar.github.io/avatar.png">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://sampatakumar.github.io">
 
-  <!-- Structured Data (JSON-LD for Google) -->
+  <!-- Structured Data (JSON-LD for Search Engine Rich Results) -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Sampatakumar",
-  "url": "https://sampatakumar.github.io",
-  "e-mail": "sampatakumarsv@gmail.com",
-  "image": [
-  "https://ibb.co/8nQPKFBk",
-  "https://ibb.co/CpBmhS0x"
-],
-  "jobTitle": "Software Engineer & Developer",
-  "worksFor": {
-  "@type": "Organization",
-  "name": [
-    "RGITX",
-    "SmartSkillHub",
-    "AgriStore"
-  ]
-},
-  "alumniOf": {
-    "role": "student",
-    "@type": "CollegeOrUniversity",
-    "name": "Rajiv Gandhi Institute of Technology"
-  },
-  "sameAs": [
-    "https://github.com/sampatakumar",
-    "https://www.linkedin.com/in/sampatakumar-sv"
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://sampatakumar.github.io/#profilepage",
+        "url": "https://sampatakumar.github.io/",
+        "name": "Sampatakumar S V - Portfolio & Tech Blog",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://sampatakumar.github.io/#website",
+          "name": "Sampatakumar Portfolio",
+          "url": "https://sampatakumar.github.io/"
+        },
+        "mainEntity": {
+          "@id": "https://sampatakumar.github.io/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://sampatakumar.github.io/#person",
+        "name": "Sampatakumar S V",
+        "givenName": "Sampatakumar",
+        "familyName": "S V",
+        "url": "https://sampatakumar.github.io/",
+        "email": "mailto:sampatakumarsv@gmail.com",
+        "image": "https://sampatakumar.github.io/profile.png",
+        "jobTitle": "Software Engineer & Developer",
+        "knowsAbout": [
+          "React Native",
+          "Node.js",
+          "TypeScript",
+          "MongoDB",
+          "Firebase",
+          "Python",
+          "Full Stack Web Development"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "RGITX"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Rajiv Gandhi Institute of Technology"
+        },
+        "sameAs": [
+          "https://github.com/sampatakumar",
+          "https://www.linkedin.com/in/sampatakumar-sv"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sampatakumar.github.io/#website",
+        "url": "https://sampatakumar.github.io/",
+        "name": "Sampatakumar Portfolio",
+        "description": "Portfolio of Sampatakumar S V showcasing modern web & mobile apps built with React Native, Node.js, MongoDB, and Python.",
+        "publisher": {
+          "@id": "https://sampatakumar.github.io/#person"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://sampatakumar.github.io/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sampatakumar.github.io/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sampatakumar.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://sampatakumar.github.io/#projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Skills",
+            "item": "https://sampatakumar.github.io/#skills"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Blog",
+            "item": "https://sampatakumar.github.io/blog"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://sampatakumar.github.io/#projects-list",
+        "name": "Featured Software Engineering Projects",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "RGITX Event Application",
+            "description": "Full-stack mobile & web platform for managing college events."
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "SmartSkillHub",
+            "description": "Skill learning and tracking application."
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "AgriStore",
+            "description": "Agricultural e-commerce and inventory marketplace."
+          }
+        ]
+      }
+    ]
+  }
   </script>
 
   <!-- SPA redirect handler for GitHub Pages -->
