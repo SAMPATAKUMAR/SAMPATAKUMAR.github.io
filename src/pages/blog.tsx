@@ -196,43 +196,43 @@ export default function Blog() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 pt-8 sm:pt-10 px-4 sm:px-6 lg:px-8 font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-background text-foreground pb-20 pt-8 sm:pt-10 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Header / Hero */}
-        <header className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-blue-900/20 via-slate-900/60 to-slate-950 border border-slate-800/80 p-5 sm:p-8 lg:p-12 mb-8 sm:mb-12 shadow-2xl backdrop-blur-xl">
-          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 -mb-12 -ml-12 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        <header className="relative overflow-hidden rounded-3xl neomorph-card p-5 sm:p-8 lg:p-12 mb-8 sm:mb-12">
+          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -mb-12 -ml-12 w-64 sm:w-96 h-64 sm:h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+              <div className="neomorph-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-emerald-600 dark:text-emerald-400 text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-3 sm:mb-4">
                 <Sparkles className="w-3.5 h-3.5" /> Technical Insights & Thoughts
               </div>
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-3 sm:mb-4 text-gradient-emerald">
                 Engineering & Design Journal
               </h1>
-              <p className="text-slate-400 text-sm sm:text-base lg:text-lg leading-relaxed">
+              <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
                 Deep dives into full-stack development, AI agent architecture, web performance, micro-interactions, and modern software design systems.
               </p>
             </div>
           </div>
 
           {/* Search Bar & Filters Bar */}
-          <div className="relative z-10 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-800/80 flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+          <div className="relative z-10 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/40 flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
             {/* Search Input */}
             <div className="relative flex-1 max-w-lg">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search articles by title, tags, or content..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                className="neomorph-inset w-full pl-10 pr-10 py-2.5 rounded-xl text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -241,14 +241,14 @@ export default function Blog() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-3 justify-between sm:justify-start">
-              <span className="text-xs text-slate-400 uppercase tracking-wider font-medium">Sort by:</span>
-              <div className="flex bg-slate-900/90 border border-slate-800 p-1 rounded-xl">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Sort by:</span>
+              <div className="flex neomorph-inset p-1 rounded-xl">
                 {(['latest', 'popular', 'likes'] as const).map((mode) => (
                   <button
                     key={mode}
                     onClick={() => setSortBy(mode)}
                     className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-medium capitalize transition-all ${
-                      sortBy === mode ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+                      sortBy === mode ? 'neomorph-pressed bg-emerald-500 text-slate-950 font-bold' : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
                     {mode}
@@ -269,10 +269,10 @@ export default function Blog() {
                   setSelectedCategory(cat)
                   setSelectedTag(null)
                 }}
-                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all border ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all ${
                   selectedCategory === cat && !selectedTag
-                    ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20'
-                    : 'bg-slate-900/70 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80'
+                    ? 'neomorph-pressed bg-emerald-500 text-slate-950 font-bold'
+                    : 'neomorph-btn text-foreground/80 hover:text-emerald-500'
                 }`}
               >
                 {cat}
@@ -282,8 +282,8 @@ export default function Blog() {
 
           {/* Active Tags list */}
           {allTags.length > 0 && (
-            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap text-xs text-slate-400">
-              <span className="inline-flex items-center gap-1 font-medium text-slate-500 mr-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1 font-medium text-muted-foreground mr-1">
                 <Tag className="w-3.5 h-3.5" /> Tags:
               </span>
               {allTags.map((tag) => {
@@ -292,10 +292,10 @@ export default function Blog() {
                   <button
                     key={tag}
                     onClick={() => setSelectedTag(isActive ? null : tag)}
-                    className={`px-2.5 py-1 rounded-lg border text-[11px] sm:text-xs transition-all ${
+                    className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs transition-all ${
                       isActive
-                        ? 'bg-purple-500/20 border-purple-500 text-purple-300 font-semibold'
-                        : 'bg-slate-900/50 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                        ? 'neomorph-pressed bg-emerald-500 text-slate-950 font-bold'
+                        : 'neomorph-pill text-foreground/80 hover:text-emerald-500'
                     }`}
                   >
                     #{tag}

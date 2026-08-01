@@ -360,27 +360,27 @@ export default function BlogControlDashboard() {
   // PASSCODE LOCK SCREEN
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 font-sans selection:bg-amber-500/30">
-        <div className="w-full max-w-md p-8 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-4 font-sans">
+        <div className="w-full max-w-md p-8 rounded-3xl neomorph-card relative overflow-hidden">
+          <div className="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <div className="text-center mb-8 relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto mb-4 text-amber-400">
+            <div className="w-16 h-16 rounded-2xl neomorph-inset flex items-center justify-center mx-auto mb-4 text-emerald-600 dark:text-emerald-400">
               <Lock className="w-8 h-8" />
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2">Restricted Admin Access</h1>
-            <p className="text-slate-400 text-xs leading-relaxed">
+            <h1 className="text-2xl font-bold text-foreground mb-2">Restricted Admin Access</h1>
+            <p className="text-muted-foreground text-xs leading-relaxed">
               Enter master PIN to unlock the Developer Control Dashboard.
               <br />
-              <span className="text-slate-500 italic">(Default PIN: 1234)</span>
+              <span className="opacity-75 italic">(Default PIN: 1234)</span>
             </p>
           </div>
 
           <form onSubmit={handleUnlock} className="space-y-5 relative z-10">
             <div>
               <div className="relative">
-                <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="password"
                   required
@@ -391,15 +391,15 @@ export default function BlogControlDashboard() {
                     setPinInput(e.target.value)
                     setPinError(false)
                   }}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border text-center font-mono tracking-widest text-lg text-white placeholder-slate-600 focus:outline-none transition-all ${
+                  className={`neomorph-inset w-full pl-10 pr-4 py-3 rounded-xl text-center font-mono tracking-widest text-lg text-foreground placeholder:text-muted-foreground focus:outline-none transition-all ${
                     pinError
-                      ? 'border-rose-500/80 focus:border-rose-500 ring-1 ring-rose-500'
-                      : 'border-slate-800 focus:border-amber-500'
+                      ? 'border-rose-500/80 ring-1 ring-rose-500'
+                      : 'focus:ring-2 focus:ring-emerald-500/50'
                   }`}
                 />
               </div>
               {pinError && (
-                <p className="text-xs text-rose-400 font-semibold mt-2 text-center flex items-center justify-center gap-1">
+                <p className="text-xs text-rose-500 font-semibold mt-2 text-center flex items-center justify-center gap-1">
                   <AlertCircle className="w-3.5 h-3.5" /> Incorrect PIN code. Please try again.
                 </p>
               )}
@@ -407,16 +407,16 @@ export default function BlogControlDashboard() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2"
+              className="neomorph-btn w-full py-3 rounded-xl font-extrabold text-sm text-emerald-600 dark:text-emerald-400 flex items-center justify-center gap-2"
             >
               <Unlock className="w-4 h-4" /> Unlock Admin Dashboard
             </button>
 
-            <div className="pt-2 text-center flex justify-center gap-4 text-xs text-slate-500">
-              <Link to="/" className="hover:text-slate-300 transition-colors">
+            <div className="pt-2 text-center flex justify-center gap-4 text-xs text-muted-foreground">
+              <Link to="/" className="hover:text-emerald-500 transition-colors">
                 ← Portfolio Home
               </Link>
-              <Link to="/blog" className="hover:text-slate-300 transition-colors">
+              <Link to="/blog" className="hover:text-emerald-500 transition-colors">
                 Public Blog
               </Link>
             </div>
@@ -428,7 +428,7 @@ export default function BlogControlDashboard() {
 
   // UNLOCKED DASHBOARD VIEW
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 pt-6 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-background text-foreground pb-20 pt-6 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Toast Notification */}
         {toastMessage && (
@@ -438,12 +438,12 @@ export default function BlogControlDashboard() {
         )}
 
         {/* Dashboard Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-800">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-border/40">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <Link
                 to="/"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-emerald-500 transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Portfolio
               </Link>

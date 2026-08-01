@@ -4,6 +4,7 @@ import AppRoute from "./routes/app.route"
 import GooeyNav from "./components/GooeyNav.js"
 import LightRays from "./components/LightRays.tsx"
 import Loading from "./pages/loading"
+import ThemeToggle from "./components/ThemeToggle"
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -34,11 +35,11 @@ export function App() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-white">
+    <div className="relative min-h-screen overflow-x-hidden text-foreground bg-background transition-colors duration-300">
 
       {/* Fullscreen Background */}
 
-      <div className="fixed inset-0 -z-10 pointer-events-none">
+      <div className="fixed inset-0 -z-10 pointer-events-none opacity-40 dark:opacity-60">
 
         <LightRays
           raysOrigin="top-center"
@@ -50,7 +51,7 @@ export function App() {
           mouseInfluence={0.12}
           noiseAmount={0}
           distortion={0}
-          className="w-full h-full opacity-60"
+          className="w-full h-full"
           pulsating={true}
           fadeDistance={1.2}
           saturation={1.2}
@@ -67,10 +68,11 @@ export function App() {
         left-0
         w-full
         z-50
+        neomorph-card
         backdrop-blur-xl
-        bg-[#0b0f19]/75
-        border-b border-emerald-500/20
-        shadow-[0_4px_20px_rgba(0,0,0,0.5)]
+        bg-background/85
+        border-b border-border/40
+        transition-colors duration-300
         "
       >
 
@@ -79,8 +81,8 @@ export function App() {
         >
 
           {/* Logo */}
-          <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wider cursor-pointer hover:text-emerald-400 transition-all flex items-center gap-2 shrink-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]"></span>
+          <Link to="/" className="text-xl sm:text-2xl font-bold tracking-wider cursor-pointer hover:opacity-90 transition-all flex items-center gap-2 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></span>
             <span className="text-gradient-emerald font-extrabold">SV</span>
           </Link>
 
@@ -100,16 +102,17 @@ export function App() {
             <div className="flex items-center gap-2 pl-1.5 sm:pl-4 border-l border-emerald-500/20 shrink-0">
               <Link
                 to="/projects"
-                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-semibold text-emerald-400 hover:text-emerald-200 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap"
+                className="neomorph-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-all flex items-center gap-1.5 whitespace-nowrap"
               >
                 Projects
               </Link>
               <Link
                 to="/blog"
-                className="px-3 py-1.5 rounded-xl bg-slate-900/60 hover:bg-emerald-500/10 border border-slate-700 hover:border-emerald-500/30 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-all flex items-center gap-1.5 whitespace-nowrap"
+                className="neomorph-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-foreground/80 hover:text-emerald-500 transition-all flex items-center gap-1.5 whitespace-nowrap"
               >
                 Blog
               </Link>
+              <ThemeToggle />
             </div>
           </div>
         </div>

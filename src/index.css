@@ -49,55 +49,64 @@
 }
 
 :root {
-    --background: #0b0f19;
-    --foreground: #f8fafc;
-    --card: rgba(15, 23, 42, 0.6);
-    --card-foreground: #f8fafc;
-    --popover: #0f172a;
-    --popover-foreground: #f8fafc;
-    --primary: #10b981;
-    --primary-foreground: #022c22;
-    --secondary: #06b6d4;
-    --secondary-foreground: #042f2e;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent: #10b981;
-    --accent-foreground: #022c22;
+    --background: #e6eef8;
+    --foreground: #1e293b;
+    --card: #e6eef8;
+    --card-foreground: #1e293b;
+    --popover: #e6eef8;
+    --popover-foreground: #1e293b;
+    --primary: #059669;
+    --primary-foreground: #ffffff;
+    --secondary: #0d9488;
+    --secondary-foreground: #ffffff;
+    --muted: #dbe4f0;
+    --muted-foreground: #64748b;
+    --accent: #059669;
+    --accent-foreground: #ffffff;
     --destructive: #ef4444;
-    --border: rgba(16, 185, 129, 0.15);
-    --input: rgba(16, 185, 129, 0.2);
-    --ring: #10b981;
-    --radius: 0.875rem;
+    --border: rgba(255, 255, 255, 0.8);
+    --input: rgba(194, 203, 224, 0.5);
+    --ring: #059669;
+    --radius: 1rem;
+    --nm-shadow-dark: #c2cbe0;
+    --nm-shadow-light: #ffffff;
+    --nm-border: rgba(255, 255, 255, 0.8);
+    --nm-border-inset: rgba(194, 203, 224, 0.5);
 }
 
 .dark {
-    --background: #0b0f19;
+    --background: #131927;
     --foreground: #f8fafc;
-    --card: rgba(15, 23, 42, 0.6);
+    --card: #131927;
     --card-foreground: #f8fafc;
-    --popover: #0f172a;
+    --popover: #131927;
     --popover-foreground: #f8fafc;
     --primary: #10b981;
     --primary-foreground: #022c22;
     --secondary: #06b6d4;
     --secondary-foreground: #042f2e;
-    --muted: #1e293b;
+    --muted: #1c2436;
     --muted-foreground: #94a3b8;
     --accent: #10b981;
     --accent-foreground: #022c22;
     --destructive: #ef4444;
-    --border: rgba(16, 185, 129, 0.15);
-    --input: rgba(16, 185, 129, 0.2);
+    --border: rgba(255, 255, 255, 0.06);
+    --input: rgba(10, 13, 21, 0.5);
     --ring: #10b981;
+    --nm-shadow-dark: #0a0d15;
+    --nm-shadow-light: #1c2539;
+    --nm-border: rgba(255, 255, 255, 0.06);
+    --nm-border-inset: rgba(10, 13, 21, 0.6);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
   body {
-    background-color: #0b0f19;
-    color: #f8fafc;
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: 'Outfit Variable', sans-serif;
   }
   html {
@@ -105,40 +114,87 @@
   }
 }
 
-/* Glassmorphism & Cyber Emerald Utilities */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+/* Neumorphic Soft UI Utilities */
+.neomorph-flat,
+.neomorph-card {
+  background: var(--background);
+  box-shadow: 8px 8px 20px var(--nm-shadow-dark), -8px -8px 20px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border);
 }
 
-.glass-panel-hover {
-  transition: all 0.3s ease;
+.neomorph-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.neomorph-card-hover:hover {
+  box-shadow: 12px 12px 25px var(--nm-shadow-dark), -12px -12px 25px var(--nm-shadow-light), 0 0 15px rgba(16, 185, 129, 0.2);
+  transform: translateY(-3px);
+}
+
+.neomorph-inset,
+.neomorph-pressed {
+  background: var(--background);
+  box-shadow: inset 4px 4px 10px var(--nm-shadow-dark), inset -4px -4px 10px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border-inset);
+}
+
+.neomorph-btn {
+  background: var(--background);
+  box-shadow: 5px 5px 12px var(--nm-shadow-dark), -5px -5px 12px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neomorph-btn:hover {
+  box-shadow: 3px 3px 8px var(--nm-shadow-dark), -3px -3px 8px var(--nm-shadow-light), 0 0 12px rgba(16, 185, 129, 0.25);
+  transform: translateY(-1px);
+}
+
+.neomorph-btn:active,
+.neomorph-btn.active {
+  box-shadow: inset 3px 3px 7px var(--nm-shadow-dark), inset -3px -3px 7px var(--nm-shadow-light);
+  transform: translateY(0);
+}
+
+.neomorph-pill {
+  background: var(--background);
+  box-shadow: 3px 3px 8px var(--nm-shadow-dark), -3px -3px 8px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border);
+}
+
+/* Glassmorphism fallback compatibility */
+.glass-panel {
+  background: var(--background);
+  box-shadow: 8px 8px 20px var(--nm-shadow-dark), -8px -8px 20px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border);
+}
+
 .glass-panel-hover:hover {
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.2), inset 0 0 15px rgba(16, 185, 129, 0.05);
+  box-shadow: 12px 12px 25px var(--nm-shadow-dark), -12px -12px 25px var(--nm-shadow-light);
   transform: translateY(-2px);
 }
 
 .text-gradient-emerald {
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gradient-emerald {
   background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .emerald-glow-btn {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  color: #34d399;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--background);
+  box-shadow: 5px 5px 12px var(--nm-shadow-dark), -5px -5px 12px var(--nm-shadow-light);
+  border: 1px solid var(--nm-border);
+  color: var(--primary);
+  transition: all 0.25s ease;
 }
+
 .emerald-glow-btn:hover {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
-  border-color: #10b981;
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-  transform: translateY(-2px);
+  box-shadow: inset 3px 3px 6px var(--nm-shadow-dark), inset -3px -3px 6px var(--nm-shadow-light);
+  color: var(--primary);
 }

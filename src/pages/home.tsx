@@ -117,23 +117,23 @@ export default function Home() {
             </div>
 
             {/* Live Interactive Terminal Window */}
-            <div className="glass-panel rounded-2xl p-4 border border-emerald-500/30 font-mono text-xs text-slate-300 shadow-2xl text-left">
-              <div className="flex items-center justify-between pb-2.5 border-b border-emerald-500/20 mb-3">
+            <div className="neomorph-inset rounded-2xl p-4 font-mono text-xs text-foreground/90 shadow-inner text-left">
+              <div className="flex items-center justify-between pb-2.5 border-b border-border/40 mb-3">
                 <div className="flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
                   <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
                   <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                  <span className="ml-2 text-slate-400 text-[11px] flex items-center gap-1">
-                    <FaTerminal className="text-emerald-400 text-xs" /> developer@sampatakumar:~
+                  <span className="ml-2 text-muted-foreground text-[11px] flex items-center gap-1">
+                    <FaTerminal className="text-emerald-500 text-xs" /> developer@sampatakumar:~
                   </span>
                 </div>
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">JS/TS</span>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 neomorph-pill px-2 py-0.5 rounded">JS/TS</span>
               </div>
               <div className="space-y-1 leading-relaxed">
-                <p><span className="text-emerald-400">const</span> <span className="text-cyan-300">stack</span> = &#123;</p>
-                <p className="pl-4"><span className="text-slate-400">frontend:</span> [<span className="text-emerald-300">'React.js'</span>, <span className="text-emerald-300">'TypeScript'</span>, <span className="text-emerald-300">'Tailwind CSS'</span>],</p>
-                <p className="pl-4"><span className="text-slate-400">backend:</span> [<span className="text-cyan-300">'Node.js'</span>, <span className="text-cyan-300">'Express.js'</span>, <span className="text-cyan-300">'REST APIs'</span>],</p>
-                <p className="pl-4"><span className="text-slate-400">databases:</span> [<span className="text-emerald-300">'MongoDB'</span>, <span className="text-emerald-300">'Firebase'</span>]</p>
+                <p><span className="text-emerald-600 dark:text-emerald-400">const</span> <span className="text-teal-600 dark:text-cyan-300">stack</span> = &#123;</p>
+                <p className="pl-4"><span className="text-muted-foreground">frontend:</span> [<span className="text-emerald-600 dark:text-emerald-300">'React.js'</span>, <span className="text-emerald-600 dark:text-emerald-300">'TypeScript'</span>, <span className="text-emerald-600 dark:text-emerald-300">'Tailwind CSS'</span>],</p>
+                <p className="pl-4"><span className="text-muted-foreground">backend:</span> [<span className="text-teal-600 dark:text-cyan-300">'Node.js'</span>, <span className="text-teal-600 dark:text-cyan-300">'Express.js'</span>, <span className="text-teal-600 dark:text-cyan-300">'REST APIs'</span>],</p>
+                <p className="pl-4"><span className="text-muted-foreground">databases:</span> [<span className="text-emerald-600 dark:text-emerald-300">'MongoDB'</span>, <span className="text-emerald-600 dark:text-emerald-300">'Firebase'</span>]</p>
                 <p>&#125;;</p>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function Home() {
                 onClick={() =>
                   window.open("https://linkedin.com/in/sampatakumar-sv", "_blank")
                 }
-                className="emerald-glow-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm"
+                className="neomorph-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400"
               >
                 <FaLinkedin size={18} />
                 LinkedIn
@@ -154,7 +154,7 @@ export default function Home() {
                 onClick={() =>
                   window.open("https://github.com/sampatakumar", "_blank")
                 }
-                className="emerald-glow-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm"
+                className="neomorph-btn px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400"
               >
                 <FaGithub size={18} />
                 GitHub
@@ -164,7 +164,7 @@ export default function Home() {
 
           {/* RIGHT PROFILE CARD */}
           <div className="scale-95 lg:scale-100 relative">
-            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-xl opacity-75 animate-pulse pointer-events-none"></div>
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 blur-xl opacity-60 pointer-events-none"></div>
             <ProfileCard
               name="Sampatakumar V"
               title="Full-Stack Developer"
@@ -177,8 +177,8 @@ export default function Home() {
               enableTilt
               enableMobileTilt
               behindGlowEnabled
-              behindGlowColor="rgba(16, 185, 129, 0.45)"
-              innerGradient="linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(16, 185, 129, 0.2) 100%)"
+              behindGlowColor="rgba(16, 185, 129, 0.35)"
+              innerGradient="linear-gradient(145deg, var(--card) 0%, var(--background) 100%)"
               onContactClick={() =>
                 window.location.href = "mailto:sampatakumarsv@gmail.com"
               }
@@ -189,7 +189,7 @@ export default function Home() {
 
       </section>
 
-      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
+      <hr className="border-border/30 w-[90%] mx-auto" />
 
       {/* ================= ABOUT ================= */}
       <section
@@ -200,7 +200,7 @@ export default function Home() {
           About Me
         </ScrollReveal>
 
-        <div className="w-full max-w-4xl mx-auto glass-panel glass-panel-hover p-8 md:p-12 rounded-3xl space-y-6 text-center text-base md:text-lg text-slate-300 leading-relaxed">
+        <div className="w-full max-w-4xl mx-auto neomorph-card neomorph-card-hover p-8 md:p-12 rounded-3xl space-y-6 text-center text-base md:text-lg text-foreground/80 leading-relaxed">
           <BlurText
             text="I am Sampatakumar, a Computer Science Engineering student passionate about Software Development, Full-Stack Web Engineering, and Artificial Intelligence. I take pride in building scalable, resilient, and responsive digital products."
             delay={200}
@@ -219,7 +219,7 @@ export default function Home() {
         </div>
       </section>
 
-      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
+      <hr className="border-border/30 w-[90%] mx-auto" />
 
       {/* ================= SKILLS ================= */}
       <section
@@ -234,10 +234,10 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
             {/* Frontend */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <FaCode className="text-emerald-400 text-xl" />
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                <FaCode className="text-emerald-500 text-xl" />
+                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                   Frontend
                 </h3>
               </div>
@@ -245,7 +245,7 @@ export default function Home() {
                 {["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "React Router", "Responsive Design", "Tailwind CSS"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
                   >
                     {skill}
                   </span>
@@ -254,10 +254,10 @@ export default function Home() {
             </div>
 
             {/* Backend */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <FaTerminal className="text-cyan-400 text-xl" />
-                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <FaTerminal className="text-teal-500 text-xl" />
+                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-500 transition-colors">
                   Backend
                 </h3>
               </div>
@@ -265,7 +265,7 @@ export default function Home() {
                 {["Node.js", "Express.js", "REST APIs", "JWT Auth", "Microservices"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
                   >
                     {skill}
                   </span>
@@ -274,10 +274,10 @@ export default function Home() {
             </div>
 
             {/* Database */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                   Database & Cloud
                 </h3>
               </div>
@@ -285,7 +285,7 @@ export default function Home() {
                 {["MongoDB", "Firebase", "Firestore", "PostgreSQL", "SQL"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
                   >
                     {skill}
                   </span>
@@ -294,10 +294,10 @@ export default function Home() {
             </div>
 
             {/* Tools */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-yellow-300 transition-colors">
+                <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+                <h3 className="text-lg font-bold text-foreground group-hover:text-amber-500 transition-colors">
                   Tools & DevOps
                 </h3>
               </div>
@@ -305,7 +305,7 @@ export default function Home() {
                 {["Git", "GitHub", "Vite", "Postman", "Vercel", "Firebase Auth"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 hover:bg-yellow-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-amber-600 dark:text-amber-300 font-medium"
                   >
                     {skill}
                   </span>
@@ -314,10 +314,10 @@ export default function Home() {
             </div>
 
             {/* Languages */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                   Languages
                 </h3>
               </div>
@@ -325,7 +325,7 @@ export default function Home() {
                 {["JavaScript", "TypeScript", "Python", "Java", "C++"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
                   >
                     {skill}
                   </span>
@@ -334,10 +334,10 @@ export default function Home() {
             </div>
 
             {/* Core Concepts */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-cyan-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <span className="w-3 h-3 rounded-full bg-teal-500"></span>
+                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-500 transition-colors">
                   Core CS Concepts
                 </h3>
               </div>
@@ -345,7 +345,7 @@ export default function Home() {
                 {["DSA", "OOP", "System Architecture", "Software Design", "Clean Code"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
                   >
                     {skill}
                   </span>
@@ -354,10 +354,10 @@ export default function Home() {
             </div>
 
             {/* Exploring */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-3 h-3 rounded-full bg-teal-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-teal-300 transition-colors">
+                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-400 transition-colors">
                   Innovations
                 </h3>
               </div>
@@ -365,7 +365,7 @@ export default function Home() {
                 {["AI Integration", "LLM APIs", "Next.js", "Docker", "Cloud Native"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
                   >
                     {skill}
                   </span>
@@ -374,10 +374,10 @@ export default function Home() {
             </div>
 
             {/* Professional Mindset */}
-            <div className="glass-panel glass-panel-hover p-6 rounded-3xl group">
+            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                   Professional Competencies
                 </h3>
               </div>
@@ -385,7 +385,7 @@ export default function Home() {
                 {["Agile Workflow", "Problem Solving", "Technical Communication", "Code Review"].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition-colors"
+                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
                   >
                     {skill}
                   </span>
@@ -397,7 +397,7 @@ export default function Home() {
         </div>
       </section>
 
-      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
+      <hr className="border-border/30 w-[90%] mx-auto" />
 
       {/* ================= PROJECTS ================= */}
 
@@ -413,7 +413,7 @@ export default function Home() {
         <ProjectCarousel projects={projects} />
       </section>
 
-      <hr className="border-emerald-500/20 w-[90%] mx-auto shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
+      <hr className="border-border/30 w-[90%] mx-auto" />
 
       {/* ================= CONTACT ================= */}
 
@@ -428,7 +428,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-start">
 
           {/* CONTACT FORM */}
-          <div className="glass-panel glass-panel-hover rounded-3xl p-6 lg:p-10">
+          <div className="neomorph-card neomorph-card-hover rounded-3xl p-6 lg:p-10">
 
             <form
               className="flex flex-col gap-6"
@@ -438,41 +438,41 @@ export default function Home() {
               }}
             >
               <div className="flex flex-col gap-2">
-                <label className="text-slate-200 font-semibold text-sm">
+                <label className="text-foreground font-semibold text-sm">
                   Your Name
                 </label>
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                  className="neomorph-inset p-4 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-slate-200 font-semibold text-sm">
+                <label className="text-foreground font-semibold text-sm">
                   Email Address
                 </label>
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                  className="neomorph-inset p-4 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-slate-200 font-semibold text-sm">
+                <label className="text-foreground font-semibold text-sm">
                   Message
                 </label>
                 <textarea
                   rows={5}
                   placeholder="Hi Sampatakumar, I'd like to discuss a software engineering opportunity..."
-                  className="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 outline-none resize-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/30 transition-all text-white placeholder:text-slate-500 font-medium"
+                  className="neomorph-inset p-4 rounded-xl outline-none resize-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
                 />
               </div>
 
               <button
                 type="submit"
-                className="emerald-glow-btn mt-2 py-4 rounded-xl font-bold text-white tracking-wide text-base shadow-lg"
+                className="neomorph-btn mt-2 py-4 rounded-xl font-bold text-emerald-600 dark:text-emerald-400 tracking-wide text-base"
               >
                 Send Message
               </button>
@@ -484,7 +484,7 @@ export default function Home() {
           <div className="flex flex-col gap-6">
 
             {/* LinkedIn Card */}
-            <div className="glass-panel glass-panel-hover rounded-3xl p-6 flex justify-center">
+            <div className="neomorph-card neomorph-card-hover rounded-3xl p-6 flex justify-center">
               <div
                 className="badge-base LI-profile-badge"
                 data-locale="en_US"
@@ -509,23 +509,23 @@ export default function Home() {
               href="https://github.com/sampatakumar"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-panel glass-panel-hover rounded-3xl p-6 block group"
+              className="neomorph-card neomorph-card-hover rounded-3xl p-6 block group"
             >
               <div className="flex gap-5 items-center">
                 <img
                   src="https://avatars.githubusercontent.com/u/148532254?v=4"
                   alt="GitHub"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-emerald-500 shadow-md"
                 />
 
                 <div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                     GitHub Profile
                   </h3>
-                  <p className="text-emerald-400 text-sm font-mono">
+                  <p className="text-emerald-600 dark:text-emerald-400 text-sm font-mono">
                     @sampatakumar
                   </p>
-                  <p className="text-slate-400 text-xs mt-1">
+                  <p className="text-muted-foreground text-xs mt-1">
                     Explore full-stack web repos & open-source solutions.
                   </p>
                 </div>
@@ -539,7 +539,7 @@ export default function Home() {
               className="w-full"
             >
               <button
-                className="emerald-glow-btn w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-2 shadow-lg"
+                className="neomorph-btn w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400"
               >
                 <FaFileDownload /> Download Resume (PDF)
               </button>
@@ -552,19 +552,19 @@ export default function Home() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="border-t border-emerald-500/20 bg-[#0b0f19]/90 backdrop-blur-lg py-10 px-6">
+      <footer className="neomorph-card border-t border-border/40 bg-background/90 backdrop-blur-lg py-10 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
-          <div className="text-slate-400 text-sm text-center md:text-left">
+          <div className="text-muted-foreground text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} Sampatakumar V. All rights reserved.<br />
-            <span className="text-xs text-slate-500">Architected with React, TypeScript & Cyber Emerald Glassmorphism</span>
+            <span className="text-xs opacity-75">Architected with React, TypeScript & Neumorphic Soft UI</span>
           </div>
 
-          <div className="flex items-center justify-center gap-6 text-slate-400">
-            <a href="https://github.com/sampatakumar" aria-label="Sampatakumar’s GitHub Profile" className="hover:text-emerald-400 hover:scale-110 transition-all text-2xl">
+          <div className="flex items-center justify-center gap-6 text-muted-foreground">
+            <a href="https://github.com/sampatakumar" aria-label="Sampatakumar’s GitHub Profile" className="hover:text-emerald-500 hover:scale-110 transition-all text-2xl">
               <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/in/sampatakumar-sv" aria-label="Sampatakumar’s LinkedIn Profile" className="hover:text-emerald-400 hover:scale-110 transition-all text-2xl">
+            <a href="https://www.linkedin.com/in/sampatakumar-sv" aria-label="Sampatakumar’s LinkedIn Profile" className="hover:text-emerald-500 hover:scale-110 transition-all text-2xl">
               <FaLinkedin />
             </a>
           </div>
