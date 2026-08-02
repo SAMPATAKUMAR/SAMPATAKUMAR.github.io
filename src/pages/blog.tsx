@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import {
   Search,
   Tag,
@@ -73,6 +73,13 @@ export default function Blog() {
 
   const hasAutoOpenedRef = React.useRef(false)
 
+  // Handle open article modal
+  const handleOpenPost = useCallback(async (post: BlogPost) => {
+    setActivePost(post)
+    const newViews = await incrementViewsAsync(post.id)
+    setPosts((prev) => prev.map((p) => (p.id === post.id ? { ...p, views: newViews } : p)))
+  }, [])
+
   // Auto-open post if ID or slug is in URL (runs once when posts are loaded)
   useEffect(() => {
     if (posts.length === 0 || hasAutoOpenedRef.current) return
@@ -101,7 +108,7 @@ export default function Blog() {
         handleOpenPost(found)
       }
     }
-  }, [posts])
+  }, [posts, handleOpenPost])
 
   // Categories list
   const categories = useMemo(() => {
@@ -143,13 +150,6 @@ export default function Blog() {
   const featuredPost = useMemo(() => {
     return posts.find((p) => p.featured) || posts[0]
   }, [posts])
-
-  // Handle open article modal
-  const handleOpenPost = async (post: BlogPost) => {
-    setActivePost(post)
-    const newViews = await incrementViewsAsync(post.id)
-    setPosts((prev) => prev.map((p) => (p.id === post.id ? { ...p, views: newViews } : p)))
-  }
 
   // Handle like button click
   const handleLike = async (postId: string, e?: React.MouseEvent) => {
@@ -379,10 +379,10 @@ export default function Blog() {
 
         {/* Article Grid Header */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
-          <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+          <h2 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" />
             {selectedCategory === 'All' ? 'All Articles' : `${selectedCategory} Articles`}
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-400 font-normal">
+            <span className="text-xs px-2.5 py-0.5 rounded-full neomorph-pill text-muted-foreground font-normal">
               {filteredPosts.length}
             </span>
           </h2>
@@ -390,10 +390,10 @@ export default function Blog() {
 
         {/* Posts Grid */}
         {filteredPosts.length === 0 ? (
-          <div className="text-center py-12 sm:py-20 rounded-3xl bg-slate-900/50 border border-slate-800 p-6 sm:p-8">
-            <BookOpen className="w-10 h-10 sm:w-12 sm:h-12 text-slate-600 mx-auto mb-3 sm:mb-4" />
-            <h3 className="text-base sm:text-lg font-bold text-slate-300 mb-2">No articles found</h3>
-            <p className="text-slate-500 text-xs sm:text-sm max-w-md mx-auto mb-6">
+          <div className="text-center py-12 sm:py-20 rounded-3xl neomorph-card p-6 sm:p-8">
+            <BookOpen className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground mx-auto mb-3 sm:mb-4" />
+            <h3 className="text-base sm:text-lg font-bold text-foreground mb-2">No articles found</h3>
+            <p className="text-muted-foreground text-xs sm:text-sm max-w-md mx-auto mb-6">
               We couldn't find any articles matching your search query or filter. Try clearing your filters.
             </p>
             <button
@@ -402,7 +402,7 @@ export default function Blog() {
                 setSelectedCategory('All')
                 setSelectedTag(null)
               }}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-medium transition-all"
+              className="px-4 py-2 rounded-xl neomorph-btn text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-medium transition-all"
             >
               Reset Filters
             </button>
@@ -417,17 +417,17 @@ export default function Blog() {
                 <article
                   key={post.id}
                   onClick={() => handleOpenPost(post)}
-                  className="group cursor-pointer flex flex-col rounded-2xl bg-slate-900/80 border border-slate-800/90 hover:border-blue-500/40 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1"
+                  className="group cursor-pointer flex flex-col rounded-2xl neomorph-card neomorph-card-hover transition-all duration-300 overflow-hidden shadow-lg hover:-translate-y-1"
                 >
                   {/* Image container */}
-                  <div className="relative h-44 sm:h-48 overflow-hidden bg-slate-800">
+                  <div className="relative h-44 sm:h-48 overflow-hidden bg-muted">
                     <img
                       src={post.coverImage}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3 flex gap-2">
-                      <span className="px-2.5 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md border border-white/10 text-[11px] font-medium text-blue-300">
+                      <span className="px-2.5 py-1 rounded-lg bg-background/80 backdrop-blur-md border border-border/50 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
                         {post.category}
                       </span>
                     </div>
@@ -437,8 +437,8 @@ export default function Blog() {
                       onClick={(e) => handleBookmark(post.id, e)}
                       className={`absolute top-3 right-3 p-2 rounded-xl backdrop-blur-md border transition-all ${
                         isBookmarked
-                          ? 'bg-amber-500/20 border-amber-500/50 text-amber-300'
-                          : 'bg-slate-950/60 border-white/10 text-slate-400 hover:text-white'
+                          ? 'bg-amber-500/20 border-amber-500/50 text-amber-500'
+                          : 'bg-background/70 border-border/50 text-muted-foreground hover:text-foreground'
                       }`}
                       title={isBookmarked ? 'Bookmarked' : 'Bookmark post'}
                     >
@@ -449,7 +449,7 @@ export default function Blog() {
                   {/* Body Content */}
                   <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                      <div className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-slate-400 mb-2.5">
+                      <div className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-muted-foreground mb-2.5">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> {post.publishedAt}
                         </span>
@@ -459,11 +459,11 @@ export default function Blog() {
                         </span>
                       </div>
 
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug">
+                      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-emerald-500 transition-colors line-clamp-2 leading-snug">
                         {post.title}
                       </h3>
 
-                      <p className="text-slate-400 text-xs sm:text-sm line-clamp-3 leading-relaxed mb-3">
+                      <p className="text-muted-foreground text-xs sm:text-sm line-clamp-3 leading-relaxed mb-3">
                         {post.excerpt}
                       </p>
                     </div>

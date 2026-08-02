@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import AppRoute from "./routes/app.route"
 import GooeyNav from "./components/GooeyNav.js"
-import LightRays from "./components/LightRays.tsx"
 import Loading from "./pages/loading"
 import ThemeToggle from "./components/ThemeToggle"
+import CustomCursor from "./components/CustomCursor"
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -25,7 +25,7 @@ export function App() {
   const items = [
     { label: "Home", href: "/#home" },
     { label: "About", href: "/#about" },
-    { label: "Skills", href: "/#skills" },
+    { label: "Stack", href: "/#skills" },
     { label: "Projects", href: "/#projects" },
     { label: "Contact", href: "/#contact" },
   ]
@@ -36,28 +36,7 @@ export function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground bg-background transition-colors duration-300">
-
-      {/* Fullscreen Background */}
-
-      <div className="fixed inset-0 -z-10 pointer-events-none opacity-40 dark:opacity-60">
-
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#10b981"
-          raysSpeed={0.8}
-          lightSpread={0.6}
-          rayLength={3.5}
-          followMouse={true}
-          mouseInfluence={0.12}
-          noiseAmount={0}
-          distortion={0}
-          className="w-full h-full"
-          pulsating={true}
-          fadeDistance={1.2}
-          saturation={1.2}
-        />
-
-      </div>
+      <CustomCursor />
 
       {/* Navbar */}
 

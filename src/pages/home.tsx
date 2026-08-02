@@ -1,10 +1,11 @@
 import ProfileCard from '../components/ProfileCard.tsx'
 import ScrollReveal from '../components/ScrollReveal.tsx'
 import ProjectCarousel from '../components/ProjectCarousel.tsx'
-import { FaGithub, FaLinkedin, FaTerminal, FaCode, FaFileDownload } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTerminal, FaFileDownload, FaEnvelope, FaExternalLinkAlt } from "react-icons/fa"
 import { useEffect, useState } from "react";
 import BlurText from "../components/BlurText.js"
 import TextType from '../components/TextType.tsx';
+import GlitchText from '../components/GlitchText.tsx';
 import { fetchProjectsAsync, type Project } from '../lib/projectService.ts'
 import '../styles/home.css'
 
@@ -35,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full overflow-x-hidden text-slate-100">
+    <div className="w-full overflow-x-hidden text-foreground">
 
       {/* ================= HOME / HERO ================= */}
 
@@ -80,17 +81,17 @@ export default function Home() {
           >
             {/* Live Availability Badge */}
             <div className="flex justify-center lg:justify-start">
-              <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide uppercase shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+              <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide uppercase shadow-[0_0_15px_rgba(16,185,129,0.15)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                Full-Stack Web Developer & Software Engineer
+                <GlitchText text="Full-Stack Web Developer & Software Engineer" className="text-emerald-600 dark:text-emerald-400" />
               </span>
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-xl sm:text-2xl font-medium text-emerald-400/90 tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 tracking-wide">
                 <BlurText text="Hello, World! I am" />
               </h3>
 
@@ -99,7 +100,7 @@ export default function Home() {
               </h1>
             </div>
 
-            <div className="text-slate-300 text-base sm:text-lg leading-relaxed min-h-[90px]">
+            <div className="text-foreground/80 font-medium text-base sm:text-lg leading-snug h-[64px] min-h-[64px] max-h-[64px] shrink-0 overflow-hidden select-none">
               <TextType
                 typingSpeed={65}
                 pauseDuration={1800}
@@ -117,7 +118,7 @@ export default function Home() {
             </div>
 
             {/* Live Interactive Terminal Window */}
-            <div className="neomorph-inset rounded-2xl p-4 font-mono text-xs text-foreground/90 shadow-inner text-left">
+            <div className="neomorph-inset rounded-2xl p-4 font-mono text-xs text-foreground/90 shadow-inner text-left shrink-0">
               <div className="flex items-center justify-between pb-2.5 border-b border-border/40 mb-3">
                 <div className="flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
@@ -131,15 +132,15 @@ export default function Home() {
               </div>
               <div className="space-y-1 leading-relaxed">
                 <p><span className="text-emerald-600 dark:text-emerald-400">const</span> <span className="text-teal-600 dark:text-cyan-300">stack</span> = &#123;</p>
-                <p className="pl-4"><span className="text-muted-foreground">frontend:</span> [<span className="text-emerald-600 dark:text-emerald-300">'React.js'</span>, <span className="text-emerald-600 dark:text-emerald-300">'TypeScript'</span>, <span className="text-emerald-600 dark:text-emerald-300">'Tailwind CSS'</span>],</p>
-                <p className="pl-4"><span className="text-muted-foreground">backend:</span> [<span className="text-teal-600 dark:text-cyan-300">'Node.js'</span>, <span className="text-teal-600 dark:text-cyan-300">'Express.js'</span>, <span className="text-teal-600 dark:text-cyan-300">'REST APIs'</span>],</p>
-                <p className="pl-4"><span className="text-muted-foreground">databases:</span> [<span className="text-emerald-600 dark:text-emerald-300">'MongoDB'</span>, <span className="text-emerald-600 dark:text-emerald-300">'Firebase'</span>]</p>
+                <p className="pl-4"><span className="text-muted-foreground">frontend:</span> [<span className="text-emerald-700 dark:text-emerald-300">'React.js'</span>, <span className="text-emerald-700 dark:text-emerald-300">'TypeScript'</span>, <span className="text-emerald-700 dark:text-emerald-300">'Tailwind CSS'</span>],</p>
+                <p className="pl-4"><span className="text-muted-foreground">backend:</span> [<span className="text-teal-700 dark:text-cyan-300">'Node.js'</span>, <span className="text-teal-700 dark:text-cyan-300">'Express.js'</span>, <span className="text-teal-700 dark:text-cyan-300">'REST APIs'</span>],</p>
+                <p className="pl-4"><span className="text-muted-foreground">databases:</span> [<span className="text-emerald-700 dark:text-emerald-300">'MongoDB'</span>, <span className="text-emerald-700 dark:text-emerald-300">'Firebase'</span>]</p>
                 <p>&#125;;</p>
               </div>
             </div>
 
             {/* BUTTONS */}
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2 shrink-0">
               <button
                 onClick={() =>
                   window.open("https://linkedin.com/in/sampatakumar-sv", "_blank")
@@ -221,178 +222,73 @@ export default function Home() {
 
       <hr className="border-border/30 w-[90%] mx-auto" />
 
-      {/* ================= SKILLS ================= */}
+      {/* ================= THE STACK ================= */}
       <section
         id="skills"
-        className="min-h-screen px-6 lg:px-20 py-24 flex flex-col items-center"
+        className="min-h-screen px-6 lg:px-20 py-24 flex flex-col justify-center items-center"
       >
-        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold text-center text-gradient-emerald mb-16">
-          Technical Skills & Expertise
-        </ScrollReveal>
-
         <div className="w-full max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+            <ScrollReveal textClassName="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground dark:text-slate-100">
+              THE STACK
+            </ScrollReveal>
+            <p className="text-muted-foreground text-sm md:text-base max-w-xs leading-relaxed text-left sm:text-right">
+              Technologies I use to build scalable, maintainable, and production-ready applications.
+            </p>
+          </div>
 
-            {/* Frontend */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <FaCode className="text-emerald-500 text-xl" />
-                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                  Frontend
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "React Router", "Responsive Design", "Tailwind CSS"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
-                  >
-                    {skill}
+          {/* Stack Cards */}
+          <div className="flex flex-col gap-6">
+            {[
+              {
+                id: "L01",
+                category: "Frontend",
+                skills: ["React.js", "Next.js", "Redux", "JavaScript", "HTML", "CSS"],
+              },
+              {
+                id: "L02",
+                category: "Backend",
+                skills: ["Node.js", "Express.js", "WebSockets", "REST APIs", "Python"],
+              },
+              {
+                id: "L03",
+                category: "Databases",
+                skills: ["MongoDB", "Firebase"],
+              },
+              {
+                id: "L04",
+                category: "Practices",
+                skills: ["REST API Design", "Agile Collaboration", "Git / GitHub"],
+              },
+            ].map((stack) => (
+              <div
+                key={stack.id}
+                className="neomorph-card neomorph-card-hover p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-border/40 flex flex-col md:flex-row md:items-center justify-between gap-6 group transition-all duration-300"
+              >
+                {/* Left: ID + Category */}
+                <div className="flex items-center gap-6 sm:gap-10 shrink-0">
+                  <span className="font-mono text-xs sm:text-sm text-muted-foreground/70 tracking-wider font-semibold select-none">
+                    {stack.id}
                   </span>
-                ))}
-              </div>
-            </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                    {stack.category}
+                  </h3>
+                </div>
 
-            {/* Backend */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <FaTerminal className="text-teal-500 text-xl" />
-                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-500 transition-colors">
-                  Backend
-                </h3>
+                {/* Right: Skill Pills */}
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 justify-start md:justify-end">
+                  {stack.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="neomorph-pill font-mono text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 transition-all duration-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["Node.js", "Express.js", "REST APIs", "JWT Auth", "Microservices"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Database */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                  Database & Cloud
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["MongoDB", "Firebase", "Firestore", "PostgreSQL", "SQL"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Tools */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-amber-500 transition-colors">
-                  Tools & DevOps
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["Git", "GitHub", "Vite", "Postman", "Vercel", "Firebase Auth"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-amber-600 dark:text-amber-300 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Languages */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                  Languages
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["JavaScript", "TypeScript", "Python", "Java", "C++"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Core Concepts */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-teal-500"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-500 transition-colors">
-                  Core CS Concepts
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["DSA", "OOP", "System Architecture", "Software Design", "Clean Code"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Exploring */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-teal-400"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-teal-400 transition-colors">
-                  Innovations
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["AI Integration", "LLM APIs", "Next.js", "Docker", "Cloud Native"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-teal-600 dark:text-teal-300 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Professional Mindset */}
-            <div className="neomorph-card neomorph-card-hover p-6 rounded-3xl group">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                  Professional Competencies
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["Agile Workflow", "Problem Solving", "Technical Communication", "Code Review"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="neomorph-pill px-3 py-1 text-xs rounded-full text-emerald-600 dark:text-emerald-400 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
@@ -415,140 +311,61 @@ export default function Home() {
 
       <hr className="border-border/30 w-[90%] mx-auto" />
 
-      {/* ================= CONTACT ================= */}
-
+      {/* ================= CONTACT / CTA ================= */}
       <section
         id="contact"
-        className="px-6 lg:px-20 py-24 pb-36"
+        className="px-6 lg:px-20 py-24 pb-36 min-h-[70vh] flex flex-col justify-center items-center"
       >
-        <ScrollReveal textClassName="text-4xl md:text-5xl font-extrabold text-center text-gradient-emerald mb-16">
-          Get In Touch
-        </ScrollReveal>
+        <div className="w-full max-w-7xl mx-auto flex flex-col gap-10">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-foreground dark:text-slate-100 leading-[1.15] sm:leading-[1.1] max-w-6xl">
+            LOOKING FOR A <GlitchText text="FULL STACK DEVELOPER" className="text-amber-500 dark:text-amber-400" /> WHO ENJOYS SOLVING CHALLENGING PROBLEMS?<span className="inline-block w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_12px_#f59e0b] ml-3 align-middle"></span>
+            <br className="hidden sm:inline" />
+            {" "}LET’S BUILD SOMETHING GREAT TOGETHER.
+          </h2>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-start">
-
-          {/* CONTACT FORM */}
-          <div className="neomorph-card neomorph-card-hover rounded-3xl p-6 lg:p-10">
-
-            <form
-              className="flex flex-col gap-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Message sent successfully!");
-              }}
+          <div className="flex flex-wrap items-center gap-3.5 sm:gap-5 pt-4">
+            {/* Email Pill */}
+            <a
+              href="mailto:sampatakumarsv@gmail.com"
+              className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-3 transition-all duration-200"
             >
-              <div className="flex flex-col gap-2">
-                <label className="text-foreground font-semibold text-sm">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="neomorph-inset p-4 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
-                />
-              </div>
+              <FaEnvelope className="text-emerald-500 text-sm" />
+              <span>sampatakumarsv@gmail.com</span>
+            </a>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-foreground font-semibold text-sm">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="john@example.com"
-                  className="neomorph-inset p-4 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-foreground font-semibold text-sm">
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="Hi Sampatakumar, I'd like to discuss a software engineering opportunity..."
-                  className="neomorph-inset p-4 rounded-xl outline-none resize-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-foreground placeholder:text-muted-foreground font-medium"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="neomorph-btn mt-2 py-4 rounded-xl font-bold text-emerald-600 dark:text-emerald-400 tracking-wide text-base"
-              >
-                Send Message
-              </button>
-            </form>
-
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="flex flex-col gap-6">
-
-            {/* LinkedIn Card */}
-            <div className="neomorph-card neomorph-card-hover rounded-3xl p-6 flex justify-center">
-              <div
-                className="badge-base LI-profile-badge"
-                data-locale="en_US"
-                data-size="large"
-                data-theme="dark"
-                data-type="VERTICAL"
-                data-vanity="sampatakumar-sv"
-                data-version="v1"
-              >
-                <a
-                  className="badge-base__link LI-simple-link"
-                  href="https://in.linkedin.com/in/sampatakumar-sv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Sampatakumar’s LinkedIn Profile"
-                ></a>
-              </div>
-            </div>
-
-            {/* GitHub Card */}
+            {/* GitHub Pill */}
             <a
               href="https://github.com/sampatakumar"
               target="_blank"
               rel="noopener noreferrer"
-              className="neomorph-card neomorph-card-hover rounded-3xl p-6 block group"
+              className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-3 transition-all duration-200"
             >
-              <div className="flex gap-5 items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/148532254?v=4"
-                  alt="GitHub"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-emerald-500 shadow-md"
-                />
-
-                <div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                    GitHub Profile
-                  </h3>
-                  <p className="text-emerald-600 dark:text-emerald-400 text-sm font-mono">
-                    @sampatakumar
-                  </p>
-                  <p className="text-muted-foreground text-xs mt-1">
-                    Explore full-stack web repos & open-source solutions.
-                  </p>
-                </div>
-              </div>
+              <FaExternalLinkAlt className="text-emerald-500 text-xs" />
+              <span>github.com/sampatakumar</span>
             </a>
 
-            {/* Resume Button */}
+            {/* LinkedIn Pill */}
+            <a
+              href="https://www.linkedin.com/in/sampatakumar-sv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-3 transition-all duration-200"
+            >
+              <FaExternalLinkAlt className="text-emerald-500 text-xs" />
+              <span>LinkedIn</span>
+            </a>
+
+            {/* Resume Pill */}
             <a
               href="/Sampatakumar_Resume.pdf"
               download
-              className="w-full"
+              className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-3 transition-all duration-200"
             >
-              <button
-                className="neomorph-btn w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400"
-              >
-                <FaFileDownload /> Download Resume (PDF)
-              </button>
+              <FaFileDownload className="text-emerald-500 text-xs" />
+              <span>Download Resume</span>
             </a>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= FOOTER ================= */}

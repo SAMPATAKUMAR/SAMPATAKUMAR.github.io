@@ -45,8 +45,7 @@
   margin: 0;
   position: relative;
   z-index: 3;
-  color: white;
-  text-shadow: 0 1px 1px hsla(204, 78%, 51%, 0.2);
+  color: var(--foreground);
 }
 
 .gooey-nav-container nav ul li {
@@ -58,7 +57,8 @@
     color 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 0 0.5px 1.5px transparent;
-  color: white;
+  color: var(--foreground);
+  font-weight: 500;
 }
 
 .gooey-nav-container nav ul li a {
@@ -67,7 +67,7 @@
 }
 
 .gooey-nav-container nav ul li:focus-within:has(:focus-visible) {
-  box-shadow: 0 0 0.5px 1.5px white;
+  box-shadow: 0 0 0.5px 1.5px var(--primary);
 }
 
 .gooey-nav-container nav ul li::after {
@@ -75,7 +75,7 @@
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: white;
+  background: var(--primary);
   opacity: 0;
   transform: scale(0);
   transition: all 0.3s ease;
@@ -83,7 +83,8 @@
 }
 
 .gooey-nav-container nav ul li.active {
-  color: rgb(188, 170, 170);
+  color: var(--primary);
+  font-weight: 700;
   text-shadow: none;
 }
 

@@ -114,10 +114,10 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
                 {/* Content */}
                 <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed line-clamp-2">
                     {project.description}
                   </p>
                   
@@ -126,7 +126,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-[11px] font-medium"
+                        className="px-2 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-300 text-[11px] font-medium"
                       >
                         {tech}
                       </span>
