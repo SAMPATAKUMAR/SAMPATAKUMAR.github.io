@@ -1,8 +1,9 @@
 import ProfileCard from '../components/ProfileCard.tsx'
 import ScrollReveal from '../components/ScrollReveal.tsx'
 import ProjectCarousel from '../components/ProjectCarousel.tsx'
-import { FaGithub, FaLinkedin, FaTerminal, FaFileDownload, FaEnvelope, FaExternalLinkAlt } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTerminal, FaFileDownload, FaEnvelope, FaExternalLinkAlt, FaGlobe, FaSearchDollar, FaRocket, FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BlurText from "../components/BlurText.js"
 import TextType from '../components/TextType.tsx';
 import GlitchText from '../components/GlitchText.tsx';
@@ -311,6 +312,91 @@ export default function Home() {
 
       <hr className="border-border/30 w-[90%] mx-auto" />
 
+      {/* ================= CLIENT SERVICES & STARTUP BUSINESS ================= */}
+      <section
+        id="services"
+        className="px-6 lg:px-20 py-24 bg-background/50"
+      >
+        <div className="max-w-7xl mx-auto space-y-12">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+                <FaRocket className="text-emerald-500" /> Startup & Client Services
+              </span>
+              <ScrollReveal textClassName="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight">
+                Website Building & SEO Management
+              </ScrollReveal>
+            </div>
+            
+            <Link
+              to="/services"
+              className="neomorph-btn px-6 py-3.5 rounded-xl font-bold text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-all flex items-center gap-2 shrink-0 self-start md:self-auto"
+            >
+              <span>Explore All Services & Get Quote</span>
+              <FaArrowRight className="text-xs" />
+            </Link>
+          </div>
+
+          {/* Quick Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="neomorph-card neomorph-card-hover p-8 rounded-3xl border border-border/40 space-y-4 group">
+              <div className="w-12 h-12 rounded-xl neomorph-pill flex items-center justify-center text-emerald-500 text-xl group-hover:scale-110 transition-transform">
+                <FaGlobe />
+              </div>
+              <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
+                Custom Website Development
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Handcrafted responsive websites, landing pages, and web apps built with modern React, Next.js, and TypeScript.
+              </p>
+              <Link to="/services#services-list" className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline pt-2">
+                Learn more <FaArrowRight className="text-[10px]" />
+              </Link>
+            </div>
+
+            <div className="neomorph-card neomorph-card-hover p-8 rounded-3xl border border-border/40 space-y-4 group">
+              <div className="w-12 h-12 rounded-xl neomorph-pill flex items-center justify-center text-emerald-500 text-xl group-hover:scale-110 transition-transform">
+                <FaSearchDollar />
+              </div>
+              <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
+                SEO & Ranking Growth
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Technical SEO audits, keyword optimization, Google Search Console indexing, and performance tuning for top search results.
+              </p>
+              <Link to="/services#services-list" className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline pt-2">
+                Learn more <FaArrowRight className="text-[10px]" />
+              </Link>
+            </div>
+
+            <div className="neomorph-card neomorph-card-hover p-8 rounded-3xl border border-emerald-500/30 bg-emerald-500/5 space-y-4 flex flex-col justify-between">
+              <div className="space-y-4">
+                <span className="text-xs font-extrabold uppercase text-emerald-600 dark:text-emerald-400 tracking-wider">
+                  Starting a Business?
+                </span>
+                <h3 className="text-xl font-bold text-foreground">
+                  Get a Custom Quote & Strategy
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Have a specific project or need monthly SEO management? Calculate your budget & book a free strategy call.
+                </p>
+              </div>
+
+              <Link
+                to="/services#quote-calculator"
+                className="neomorph-btn w-full text-center py-3 rounded-xl font-bold text-xs bg-emerald-500 text-white hover:bg-emerald-600 border border-emerald-400"
+              >
+                Instant Quote Calculator
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr className="border-border/30 w-[90%] mx-auto" />
+
       {/* ================= CONTACT / CTA ================= */}
       <section
         id="contact"
@@ -324,6 +410,17 @@ export default function Home() {
           </h2>
 
           <div className="flex flex-wrap items-center gap-3.5 sm:gap-5 pt-4">
+            {/* WhatsApp Inquiry Pill */}
+            <a
+              href="https://wa.me/919380395607"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/40 hover:border-emerald-500 hover:text-emerald-500 bg-emerald-500/10 flex items-center gap-3 transition-all duration-200"
+            >
+              <FaWhatsapp className="text-emerald-500 text-base animate-pulse" />
+              <span>WhatsApp: +91 9380395607</span>
+            </a>
+
             {/* Email Pill */}
             <a
               href="mailto:sampatakumarsv@gmail.com"
