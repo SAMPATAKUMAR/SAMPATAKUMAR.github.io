@@ -181,8 +181,8 @@ export default function Services() {
               {
                 icon: FaMobileAlt,
                 title: "UI/UX & Modern Redesign",
-                desc: "Transform outdated websites into modern digital masterpieces. Soft Neumorphic & Glassmorphism design elements tailored to captivate your audience.",
-                highlights: ["User Experience Research", "Wireframing & Prototyping", "Design System Creation", "Conversion Rate Optimization"]
+                desc: "Transform outdated websites into high-converting digital experiences with sleek Glassmorphism, responsive component architecture, and fluid micro-animations.",
+                highlights: ["User Experience Research", "Wireframing & Prototyping", "Modern Design Systems", "Conversion Rate Optimization"]
               },
               {
                 icon: FaBolt,
@@ -299,8 +299,8 @@ export default function Services() {
                 <ul className="space-y-3 pt-4 border-t border-border/30 text-sm">
                   {[
                     "Up to 3 - 5 Responsive Pages",
-                    "Custom Neumorphic / Soft UI",
-                    "Contact Form Integration",
+                    "Modern UI/UX Design System & Animations",
+                    "Contact & Inquiry Form Integration",
                     "Basic On-Page SEO Setup",
                     "Mobile & Tablet Optimized",
                     "1 Month Free Support"

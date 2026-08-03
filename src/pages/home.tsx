@@ -471,7 +471,7 @@ export default function Home() {
 
           <div className="text-muted-foreground text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} Sampatakumar V. All rights reserved.<br />
-            <span className="text-xs opacity-75">Architected with React, TypeScript & Neumorphic Soft UI</span>
+            <span className="text-xs opacity-75">Architected with React, TypeScript & Modern High-Performance UI/UX Design System</span>
           </div>
 
           <div className="flex items-center justify-center gap-6 text-muted-foreground">
