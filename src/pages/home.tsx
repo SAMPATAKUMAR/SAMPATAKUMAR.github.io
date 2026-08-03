@@ -14,6 +14,7 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([])
 
   useEffect(() => {
+    document.title = "Sampatakumar V | Full-Stack Web Developer & Software Engineer"
     fetchProjectsAsync().then((data) => setProjects(data))
 
     const handleStorage = () => {

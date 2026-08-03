@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import ScrollReveal from "../components/ScrollReveal.tsx"
 import GlitchText from "../components/GlitchText.tsx"
@@ -19,6 +19,11 @@ import {
 } from "react-icons/fa"
 
 export default function Services() {
+  useEffect(() => {
+    document.title = "Website Building & Technical SEO Services | SV Digital Solutions"
+    window.scrollTo(0, 0)
+  }, [])
+
   // Quote Form State
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "Custom Website Building",

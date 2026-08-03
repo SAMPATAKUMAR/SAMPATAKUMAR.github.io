@@ -1,4 +1,21 @@
+# Robots.txt for Sampatakumar V Portfolio & SV Digital Solutions Agency
 User-agent: *
 Allow: /
-# Sitemap reference for better indexing
+Allow: /avatar.png
+Allow: /profile.png
+Allow: /services
+Allow: /projects
+Allow: /blog
+Disallow: /blog-control
+Disallow: /blogcontroldashboard
+Disallow: /server/
+
+# Specific Bots Permission
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap Index Reference
 Sitemap: https://sampatakumar.github.io/sitemap.xml
