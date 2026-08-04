@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom"
 import Home from "../pages/home"
 import Blog from "../pages/blog"
 import Projects from "../pages/projects"
-import Services from "../pages/services"
 import BlogControlDashboard from "../pages/blogcontroldashboard"
 import NotFound from "../pages/notfound"
 
@@ -11,7 +10,6 @@ export default function AppRoutes() {
         <div>
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog-control" element={<BlogControlDashboard />} />

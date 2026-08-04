@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import GlitchText from "../components/GlitchText.tsx"
-import { FaHome, FaRocket, FaRedo, FaGamepad, FaTrophy, FaArrowLeft, FaArrowRight, FaCrosshairs, FaBolt } from "react-icons/fa"
+import { FaHome, FaRedo, FaGamepad, FaTrophy, FaArrowLeft, FaArrowRight, FaCrosshairs, FaBolt } from "react-icons/fa"
 
 interface Bug {
   id: number
@@ -658,12 +658,6 @@ export default function NotFound() {
           className="neomorph-btn px-6 py-3 rounded-2xl font-bold text-sm text-foreground hover:text-emerald-500 transition-all flex items-center gap-2"
         >
           <FaHome className="text-emerald-500" /> Home Page
-        </Link>
-        <Link
-          to="/services"
-          className="neomorph-btn px-6 py-3 rounded-2xl font-bold text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-all flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30"
-        >
-          <FaRocket className="text-emerald-500" /> Web & SEO Services
         </Link>
       </div>
 

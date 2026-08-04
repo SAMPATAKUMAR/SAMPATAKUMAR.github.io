@@ -27,7 +27,6 @@ export function App() {
     { label: "About", href: "/#about" },
     { label: "Stack", href: "/#skills" },
     { label: "Projects", href: "/#projects" },
-    { label: "Services", href: "/#services" },
     { label: "Contact", href: "/#contact" },
   ]
 
@@ -80,12 +79,6 @@ export function App() {
             />
 
             <div className="flex items-center gap-2 pl-1.5 sm:pl-4 border-l border-emerald-500/20 shrink-0">
-              <Link
-                to="/services"
-                className="neomorph-btn px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-all flex items-center gap-1.5 whitespace-nowrap bg-emerald-500/10 border border-emerald-500/30"
-              >
-                Services
-              </Link>
               <Link
                 to="/projects"
                 className="neomorph-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-foreground/80 hover:text-emerald-500 transition-all flex items-center gap-1.5 whitespace-nowrap"
