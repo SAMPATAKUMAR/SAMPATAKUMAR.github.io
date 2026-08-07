@@ -1,82 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Homepage -->
-  <url>
-    <loc>https://sampatakumar.github.io/</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://sampatakumar.github.io/avatar.png</image:loc>
-      <image:title>Sampatakumar V - Full-Stack Developer & Software Engineer</image:title>
-      <image:caption>Official portrait of Sampatakumar V, founder of SV Digital Solutions</image:caption>
-    </image:image>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- SV Digital Solutions Agency & Services Page -->
-  <url>
-    <loc>https://sampatakumar.github.io/services</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://sampatakumar.github.io/avatar.png</image:loc>
-      <image:title>Website Building & Technical SEO Services</image:title>
-    </image:image>
-  </url>
+    <!-- Homepage -->
+    <url>
+        <loc>https://sampatakumar.github.io/</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-  <!-- Featured Projects -->
-  <url>
-    <loc>https://sampatakumar.github.io/projects</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+    <!-- Projects -->
+    <url>
+        <loc>https://sampatakumar.github.io/projects</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
 
-  <!-- Tech Blog -->
-  <url>
-    <loc>https://sampatakumar.github.io/blog</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
+    <!-- Blog -->
+    <url>
+        <loc>https://sampatakumar.github.io/blog</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
 
-  <!-- Home Sections for Direct Anchor Indexing -->
-  <url>
-    <loc>https://sampatakumar.github.io/#projects</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
+   
 
-  <url>
-    <loc>https://sampatakumar.github.io/#services</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://sampatakumar.github.io/#skills</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://sampatakumar.github.io/#about</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://sampatakumar.github.io/#contact</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
+    <!-- Custom 404 Page -->
+    <url>
+        <loc>https://sampatakumar.github.io/404.html</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.20</priority>
+    </url>
 
 </urlset>
