@@ -369,7 +369,7 @@ export default function Home() {
 
             {/* Resume Pill */}
             <a
-              href="/Sampatakumar_Resume.pdf"
+              href="/Sampatakumar_VResume.pdf"
               download
               className="neomorph-pill font-mono text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full text-foreground/90 dark:text-slate-200 border border-border/50 hover:border-emerald-500/50 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-3 transition-all duration-200"
             >
