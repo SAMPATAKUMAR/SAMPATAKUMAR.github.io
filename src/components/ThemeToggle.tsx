@@ -2,9 +2,9 @@ import { useTheme } from "./theme-provider"
 import { Sun, Moon } from "lucide-react"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
-  const isDark = theme === "dark"
+  const isDark = resolvedTheme === "dark"
 
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark")
@@ -14,12 +14,13 @@ export function ThemeToggle() {
     <button
       onClick={toggleTheme}
       type="button"
-      aria-label="Toggle Light and Dark Theme"
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      aria-pressed={isDark}
       className="neomorph-inset relative flex items-center w-14 h-7 p-1 rounded-full cursor-pointer focus:outline-none transition-all"
     >
       <div
         className={`neomorph-btn flex items-center justify-center w-5 h-5 rounded-full text-emerald-600 dark:text-emerald-400 transition-transform duration-300 ease-in-out ${
-          isDark ? "translate-x-7 bg-[#131927]" : "translate-x-0 bg-[#e6eef8]"
+          isDark ? "translate-x-7" : "translate-x-0"
         }`}
       >
         {isDark ? (

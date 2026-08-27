@@ -61,24 +61,25 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
       onTouchEnd={handleTouchEnd}
     >
       {/* Main 3D Stage */}
-      <div className="relative h-[480px] sm:h-[480px] w-full flex items-center justify-center overflow-hidden sm:overflow-visible">
+      <div className="relative h-[520px] sm:h-[560px] w-full flex items-center justify-center overflow-hidden sm:overflow-visible">
         {projects.map((project, idx) => {
-          // Calculate relative position
+          // Normalize the position around the active slide. Only the immediate
+          // neighbours belong on either side; the rest must stay out of view.
           let diff = idx - activeIndex
-          if (diff < -1 && activeIndex === total - 1 && idx === 0) diff = 1
-          if (diff > 1 && activeIndex === 0 && idx === total - 1) diff = -1
+          if (diff > total / 2) diff -= total
+          if (diff < -total / 2) diff += total
 
           const isCenter = diff === 0
-          const isRight = diff === 1 || (diff > 1 && idx > activeIndex)
-          const isLeft = diff === -1 || (diff < -1 && idx < activeIndex)
+          const isRight = diff === 1
+          const isLeft = diff === -1
 
           let transformClass = 'opacity-0 scale-75 pointer-events-none translate-x-0 z-0'
           if (isCenter) {
             transformClass = 'translate-x-0 scale-100 opacity-100 z-30 shadow-[0_15px_40px_rgba(16,185,129,0.3)] border-emerald-500/60 pointer-events-auto'
           } else if (isRight) {
-            transformClass = 'translate-x-[20%] sm:translate-x-[55%] lg:translate-x-[65%] scale-[0.82] sm:scale-[0.88] opacity-40 sm:opacity-60 z-20 border-slate-700 pointer-events-auto cursor-pointer hover:opacity-90'
+            transformClass = 'translate-x-[20%] sm:translate-x-[55%] lg:translate-x-[65%] scale-[0.82] sm:scale-[0.88] opacity-75 sm:opacity-85 z-20 border-slate-700 pointer-events-auto cursor-pointer hover:opacity-100'
           } else if (isLeft) {
-            transformClass = '-translate-x-[20%] sm:-translate-x-[55%] lg:-translate-x-[65%] scale-[0.82] sm:scale-[0.88] opacity-40 sm:opacity-60 z-20 border-slate-700 pointer-events-auto cursor-pointer hover:opacity-90'
+            transformClass = '-translate-x-[20%] sm:-translate-x-[55%] lg:-translate-x-[65%] scale-[0.82] sm:scale-[0.88] opacity-75 sm:opacity-85 z-20 border-slate-700 pointer-events-auto cursor-pointer hover:opacity-100'
           }
 
           return (

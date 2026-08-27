@@ -5,6 +5,7 @@ import GooeyNav from "./components/GooeyNav.js"
 import Loading from "./pages/loading"
 import ThemeToggle from "./components/ThemeToggle"
 import CustomCursor from "./components/CustomCursor"
+import AnimatedBackground from "./components/AnimatedBackground"
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -35,7 +36,9 @@ export function App() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-foreground bg-background transition-colors duration-300">
+    <div className="relative isolate min-h-screen overflow-x-hidden text-foreground transition-colors duration-300">
+      <AnimatedBackground />
+
       <CustomCursor />
 
       {/* Navbar */}

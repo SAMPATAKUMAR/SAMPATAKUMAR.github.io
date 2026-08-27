@@ -49,6 +49,7 @@
 }
 
 :root {
+    color-scheme: light;
     --background: #e4ecf7;
     --foreground: #0f172a;
     --card: #e4ecf7;
@@ -75,6 +76,7 @@
 }
 
 .dark {
+    color-scheme: dark;
     --background: #131927;
     --foreground: #f8fafc;
     --card: #131927;
@@ -111,6 +113,9 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  #root {
+    min-height: 100vh;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit Variable', sans-serif;
@@ -205,4 +210,4 @@
 .emerald-glow-btn:hover {
   box-shadow: inset 3px 3px 6px var(--nm-shadow-dark), inset -3px -3px 6px var(--nm-shadow-light);
   color: var(--primary);
-}
+}
