@@ -243,7 +243,8 @@
 }
 
 .pc-avatar-content {
-  mix-blend-mode: luminosity;
+  /* Keep the supplied profile photograph in its original colours. */
+  mix-blend-mode: normal;
   overflow: visible;
   transform: translateZ(2);
   backface-visibility: hidden;

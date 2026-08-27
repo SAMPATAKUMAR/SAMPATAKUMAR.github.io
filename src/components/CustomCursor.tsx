@@ -1,106 +1,134 @@
-import { useEffect, useState, useRef } from 'react';
-import './CustomCursor.css';
+import { useEffect, useRef, useState } from "react"
+
+import "./CustomCursor.css"
+
+const INTERACTIVE_SELECTOR =
+  "a, button, input, textarea, select, label, [role='button'], .neomorph-btn, .neomorph-pill, .neomorph-card-hover, .cursor-pointer, [data-interactive='true']"
+
+const TEXT_SELECTOR = "p, h1, h2, h3, h4, h5, h6, span, .text-type"
 
 export default function CustomCursor() {
-  const [isPointerFine, setIsPointerFine] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [isTextHovered, setIsTextHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-
-  const mousePos = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
+  const [enabled, setEnabled] = useState(false)
+  const cursorRef = useRef<HTMLDivElement>(null)
+  const dotRef = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(pointer: fine)');
-    const checkPointer = () => setIsPointerFine(mediaQuery.matches);
-    checkPointer();
+    const finePointer = window.matchMedia("(pointer: fine)")
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const updateEnabled = () => setEnabled(finePointer.matches && !reducedMotion.matches)
 
-    mediaQuery.addEventListener('change', checkPointer);
-    return () => mediaQuery.removeEventListener('change', checkPointer);
-  }, []);
+    updateEnabled()
+    finePointer.addEventListener("change", updateEnabled)
+    reducedMotion.addEventListener("change", updateEnabled)
+    return () => {
+      finePointer.removeEventListener("change", updateEnabled)
+      reducedMotion.removeEventListener("change", updateEnabled)
+    }
+  }, [])
 
   useEffect(() => {
-    if (!isPointerFine) return;
+    if (!enabled) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
+    const cursor = cursorRef.current
+    const dot = dotRef.current
+    const ring = ringRef.current
+    if (!cursor || !dot || !ring) return
 
-      const target = e.target as HTMLElement | null;
-      if (target) {
-        const isClickable = !!target.closest(
-          'a, button, input, textarea, select, label, [role="button"], .neomorph-btn, .neomorph-pill, .neomorph-card-hover, .cursor-pointer, [data-interactive="true"]'
-        );
-        const isText = !isClickable && !!target.closest('p, h1, h2, h3, h4, h5, h6, span, .text-type');
+    document.documentElement.classList.add("has-custom-cursor")
 
-        setIsHovered(isClickable);
-        setIsTextHovered(isText);
+    let animationFrame = 0
+    let targetX = -100
+    let targetY = -100
+    let ringX = -100
+    let ringY = -100
+    let visible = false
+    let mode = "default"
+
+    const updateMode = (target: EventTarget | null) => {
+      const element = target instanceof Element ? target : null
+      const isInteractive = Boolean(element?.closest(INTERACTIVE_SELECTOR))
+      const isText = !isInteractive && Boolean(element?.closest(TEXT_SELECTOR))
+      const nextMode = isInteractive ? "interactive" : isText ? "text" : "default"
+
+      if (nextMode !== mode) {
+        cursor.classList.remove(`custom-cursor--${mode}`)
+        cursor.classList.add(`custom-cursor--${nextMode}`)
+        mode = nextMode
       }
-    };
+    }
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const renderRing = () => {
+      ringX += (targetX - ringX) * 0.28
+      ringY += (targetY - ringY) * 0.28
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
-
-    let animId: number;
-    const render = () => {
-      // Smooth lerp physics for trailing outer ring
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.2;
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.2;
-
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`;
+      if (Math.abs(targetX - ringX) > 0.15 || Math.abs(targetY - ringY) > 0.15) {
+        animationFrame = window.requestAnimationFrame(renderRing)
+      } else {
+        animationFrame = 0
       }
+    }
 
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
+    const handlePointerMove = (event: PointerEvent) => {
+      targetX = event.clientX
+      targetY = event.clientY
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`
+      updateMode(event.target)
+
+      if (!visible) {
+        cursor.classList.add("custom-cursor--visible")
+        visible = true
       }
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(renderRing)
+    }
 
-      animId = requestAnimationFrame(render);
-    };
+    const hideCursor = () => {
+      cursor.classList.remove("custom-cursor--visible")
+      visible = false
+    }
 
-    animId = requestAnimationFrame(render);
+    const showCursor = () => {
+      if (targetX > 0 && targetY > 0) {
+        cursor.classList.add("custom-cursor--visible")
+        visible = true
+      }
+    }
+
+    const handlePointerDown = () => cursor.classList.add("custom-cursor--pressed")
+    const handlePointerUp = () => cursor.classList.remove("custom-cursor--pressed")
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true })
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true })
+    window.addEventListener("pointerup", handlePointerUp, { passive: true })
+    document.addEventListener("mouseleave", hideCursor)
+    document.addEventListener("mouseenter", showCursor)
+    window.addEventListener("blur", hideCursor)
 
     return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-    };
-  }, [isPointerFine, isVisible]);
+      window.cancelAnimationFrame(animationFrame)
+      document.documentElement.classList.remove("has-custom-cursor")
+      window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerdown", handlePointerDown)
+      window.removeEventListener("pointerup", handlePointerUp)
+      document.removeEventListener("mouseleave", hideCursor)
+      document.removeEventListener("mouseenter", showCursor)
+      window.removeEventListener("blur", hideCursor)
+    }
+  }, [enabled])
 
-  if (!isPointerFine) return null;
+  if (!enabled) return null
 
   return (
-    <div className={`custom-cursor-container ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Outer Glowing Ring */}
-      <div
-        ref={ringRef}
-        className={`custom-cursor-ring ${isHovered ? 'custom-cursor-ring--hover' : ''} ${
-          isClicking ? 'custom-cursor-ring--clicking' : ''
-        } ${isTextHovered ? 'custom-cursor-ring--text' : ''}`}
-      />
-
-      {/* Inner Glowing Pointer Dot */}
-      <div
-        ref={dotRef}
-        className={`custom-cursor-dot ${isHovered ? 'custom-cursor-dot--hover' : ''} ${
-          isClicking ? 'custom-cursor-dot--clicking' : ''
-        }`}
-      />
+    <div ref={cursorRef} className="custom-cursor custom-cursor--default" aria-hidden="true">
+      <div ref={ringRef} className="custom-cursor__trail" />
+      <div ref={dotRef} className="custom-cursor__pointer">
+        <span className="custom-cursor__corner custom-cursor__corner--top-left" />
+        <span className="custom-cursor__corner custom-cursor__corner--top-right" />
+        <span className="custom-cursor__corner custom-cursor__corner--bottom-right" />
+        <span className="custom-cursor__corner custom-cursor__corner--bottom-left" />
+        <span className="custom-cursor__core" />
+      </div>
     </div>
-  );
+  )
 }
